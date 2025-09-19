@@ -1,4 +1,5 @@
-# Quirk AI Voice — Overview
+<img src="/quirk-closedai/assets/img/quirk-voice-logo.svg" alt="Quirk AI Voice" style="max-width:520px;">
+
 Goal: corporate-managed, on-prem voice assistant that answers, routes, and resolves common sales/service requests across all Quirk rooftops.
 
 ## High-level flow
