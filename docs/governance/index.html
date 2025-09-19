@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Governance & Security — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<main class="container">
+  <div class="hero">
+    <div class="logo"><div class="logo-badge">AI</div></div>
+    <div>
+      <h1 class="title">Governance &amp; Security</h1>
+      <p class="sub">Prompt controls, data handling, audit checkpoints, and change management.</p>
+      <div class="pills">
+        <a class="pill" href="../index.html">← Back to Overview</a>
+        <a class="pill" href="../playbooks/index.html">Playbooks</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="grid">
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Prompt Governance</h3>
+      <pre class="code">
+• All prompts live in version control.
+• Changes via PR with reviewer from Ops + IT.
+• Tests: tone, compliance, and redaction pass before merge.
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Data Handling</h3>
+      <pre class="code">
+• On premise isolation. No raw audio stored.
+• Logs redact names, phones, emails by default.
+• Role-based access for transcripts and config.
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Change Log — PR Template</h3>
+      <pre class="code">
+Title: [Dept] Short description
+Why: business outcome / defect
+Risk: low/med/high
+Test: steps & results
+Rollback: how to revert
+      </pre>
+    </div></article>
+  </section>
+</main>
+</body>
+</html>
