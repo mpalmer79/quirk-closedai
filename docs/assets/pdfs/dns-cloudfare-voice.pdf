@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DNS (Cloudflare) — voice.quirkcars.com</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>DNS (Cloudflare) — voice.quirkcars.com</h1>
+      <p class="sub">Pilot setup (DNS-only / gray cloud) with Let’s Encrypt.</p>
+    </div>
+  </div>
+
+  <h2>Records</h2>
+  <ul>
+    <li><b>A</b> record: <code>voice</code> → on-prem public IP (Cloudflare proxy OFF).</li>
+    <li><b>CAA</b>: issue <code>letsencrypt.org</code>.</li>
+  </ul>
+
+  <h2>Notes</h2>
+  <ul>
+    <li>Use registrar or self-hosted DNS if preferred; keep TLS issuance reachable on port 80.</li>
+    <li>Verify with <code>nslookup voice.quirkcars.com 1.1.1.1</code>.</li>
+  </ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
