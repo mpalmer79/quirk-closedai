@@ -128,5 +128,5 @@ quirk-closedai/
 ├─ .gitignore
 ├─ LICENSE
 └─ README.md
-<pre>
+
 </pre>details>
