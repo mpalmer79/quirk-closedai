@@ -1,0 +1,34 @@
+name: quirk-ai
+services:
+  gateway:
+    build:
+      context: ..
+      dockerfile: deploy/gateway.Dockerfile
+    container_name: quirk_gateway
+    env_file:
+      - .env
+    volumes:
+      - ../config/prompts:/app/config/prompts:ro
+    networks: [ web ]
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2.7
+    container_name: quirk_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN}
+      - EMAIL=${LETS_ENCRYPT_EMAIL}
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - gateway
+    networks: [ web ]
+    restart: unless-stopped
+
+networks: { web: {} }
+volumes: { caddy_data: {}, caddy_config: {} }
