@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="520" height="120" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Quirk AI — Wordmark</title>
+  <desc id="desc">Circular Q monogram in navy with a green tail, plus the Quirk AI wordmark</desc>
+  <style>
+    .q-green { fill:#00A870; }
+    .q-navy  { fill:#0B2E5B; }
+    .text-navy { fill:#0B2E5B; }
+    .text-green { fill:#00A870; }
+    .label { font: 700 40px/1.2 "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; letter-spacing: 0.2px; }
+    .tagline { font: 500 16px/1.2 "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; letter-spacing: 0.2px; opacity: .85; }
+  </style>
+
+  <!-- Q Monogram -->
+  <g transform="translate(20,20)">
+    <!-- Base circle -->
+    <circle cx="40" cy="40" r="36" class="q-navy"/>
+    <!-- Notch to form the Q opening -->
+    <rect x="54" y="50" width="20" height="12" rx="6" transform="rotate(-35 54 50)" fill="#FFFFFF"/>
+    <!-- Tail -->
+    <path d="M61 63c8 6 14 12 18 18" fill="none" stroke="#00A870" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(120,45)">
+    <text class="label text-navy">Quirk </text>
+    <text x="145" class="label text-green">AI</text>
+  </g>
+
+  <!-- Tagline -->
+  <g transform="translate(120,82)">
+    <text class="tagline text-navy">Closed AI • Corporate • On-Prem • Multi-Store</text>
+  </g>
+</svg>
