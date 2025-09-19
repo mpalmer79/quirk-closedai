@@ -1,0 +1,24 @@
+{
+  email {env.EMAIL}
+  # optional: admin off
+}
+
+{env.DOMAIN} {
+  encode gzip
+  @health path /health
+  route {
+    # Health
+    reverse_proxy /health gateway:8080
+
+    # Twilio Media Streams (WebSocket)
+    reverse_proxy /realtime/twilio gateway:8080
+  }
+
+  # Security headers
+  header {
+    Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    X-Content-Type-Options "nosniff"
+    X-Frame-Options "DENY"
+    Referrer-Policy "no-referrer"
+  }
+}
