@@ -3,13 +3,17 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import PlainTextResponse
 from dotenv import load_dotenv
 
+from .policy import redact
+from .audio_utils import decode_twilio_payload, mulaw_to_pcm, resample_pcm16
+from .openai_bridge import OpenAIRealtimeBridge
+
 load_dotenv()
 app = FastAPI()
 
-# env vars (populate in .env at deploy time, don't commit real values)
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "set-me")
-REALTIME_MODEL = os.getenv("REALTIME_MODEL", "realtime-model-name")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+REALTIME_MODEL = os.getenv("OPENAI_REALTIME_MODEL", "gpt-realtime-preview")
 SYSTEM_PROMPT_PATH = os.getenv("SYSTEM_PROMPT_PATH", "config/prompts/voice_system.md")
+BIDI = os.getenv("BIDIRECTIONAL_STREAMS", "true").lower() == "true"
 
 def load_system_prompt():
     try:
@@ -25,33 +29,58 @@ def health():
 @app.websocket("/realtime/twilio")
 async def twilio_stream(ws: WebSocket):
     """
-    This endpoint is designed for a Twilio <Connect><Stream> bidirectional media stream.
-    For the pilot: we just accept the stream and log message types so you can verify end-to-end routing.
-    Later, bridge to OpenAI Realtime (WebRTC/WS) and stream TTS back.
+    Twilio <Connect><Stream> handler.
+
+    Twilio events:
+      - start: streamSid, callSid
+      - media: 20ms chunks, b64 payload (μ-law or PCM)
+      - stop:  end of stream
+
+    We forward inbound audio to OpenAI Realtime, and (when enabled/available)
+    stream synthesized audio back to Twilio (bidirectional).
     """
     await ws.accept()
-    system_prompt = load_system_prompt()
-    print("[WS] connected; prompt bytes:", len(system_prompt))
+    prompt = load_system_prompt()
+
+    # Bridge to OpenAI
+    oai = OpenAIRealtimeBridge(system_prompt=prompt)
+    await oai.connect()
 
     try:
         while True:
             msg = await ws.receive_text()
             data = json.loads(msg)
-            event_type = data.get("event", data.get("type"))
-            if event_type in ("start", "connected"):
-                print(f"[WS] {event_type}: {data}")
-            elif event_type == "media":
-                # Twilio sends 20ms PCM frames base64-encoded in data['media']['payload']
-                # payload = base64.b64decode(data["media"]["payload"])
-                pass
-            elif event_type in ("stop", "close"):
-                print(f"[WS] stop: {data}")
+            evt = data.get("event") or data.get("type")
+
+            if evt == "start":
+                print("[twilio] start:", data.get("start", {}))
+                continue
+
+            if evt == "media":
+                payload = data["media"]["payload"]
+                raw = decode_twilio_payload(payload)       # μ-law or PCM
+                pcm16 = mulaw_to_pcm(raw)                  # convert μ-law → PCM16
+                pcm16 = resample_pcm16(pcm16, 8000, 16000) # 8k → 16k for model comfort
+
+                # Send audio to the model (non-blocking)
+                await oai.send_audio_chunk(pcm16, sample_rate_hz=16000)
+                continue
+
+            if evt == "mark":
+                continue
+
+            if evt == "stop":
+                print("[twilio] stop")
                 break
-            else:
-                print(f"[WS] other: {data.keys()}")
+
     except WebSocketDisconnect:
-        print("[WS] disconnected")
+        print("[twilio] client disconnected")
     except Exception as e:
-        print("[WS] error:", e)
+        print("[twilio] error:", e)
     finally:
+        try:
+            await oai.commit_input()
+        except Exception:
+            pass
+        await oai.close()
         await ws.close()
