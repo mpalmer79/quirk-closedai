@@ -1,45 +1,36 @@
 ---
-title: Templates
-nav_order: 2
+title: Templates Catalog
+nav_order: 10
 ---
 
-# Templates Hub
+<link rel="stylesheet" href="../assets/css/cards.css">
+<script src="../assets/js/copy.js"></script>
 
-Choose a department:
+# Templates Catalog
 
-- [Sales](/quirk-closedai/templates/sales/)
-- [Service](/quirk-closedai/templates/service/)
-- [F&I](/quirk-closedai/templates/fi/)
-- [Parts](/quirk-closedai/templates/parts/)
-- [Accounting](/quirk-closedai/templates/accounting/)
-- [Marketing](/quirk-closedai/templates/marketing/)
-- [Executive](/quirk-closedai/templates/executive/)
+Copy-ready email/SMS for every department. Use the **Copy** button on any block, then replace `{{…}}` with your CRM merge fields (VinSolutions TargetFields).
 
----
+<div class="cards">
 
-## Common Blocks
-<details>
-  <summary><span class="open">Open for more</span><span class="close" style="display:none">Close</span></summary>
+<div class="card">
+  <h3>Sales — Internet Lead (Email)</h3>
+  <p>Fast, compliant first touch that confirms availability and proposes an appointment time.</p>
+  <div class="meta">Persona: Internet Sales / BDC</div>
+  
+```md
+Subject: {{FirstName}}, info on the {{Year}} {{Make}} {{Model}}
 
-### Placeholders
-{% include_relative common/placeholders.md %}
+Hi {{FirstName}},
 
-### Disclaimers
-{% include_relative common/disclaimers.md %}
+Thanks for reaching out about the {{Year}} {{Make}} {{Model}}. We have {{AvailabilitySummary}}.
 
-### Signatures
-{% include_relative common/signatures.md %}
+Highlights:
+• {{TrimOrPackage}} — {{KeyFeature1}}, {{KeyFeature2}}
+• Trade-in welcome — fast, no-obligation appraisal
+• Test drive on your schedule (we’re open {{HoursBrief}})
 
-</details>
+Would {{AppointmentDayTime}} work? I’ll have it pulled up and ready.
 
-<script>
-  // Toggle label swap for details/summary (your preferred pattern)
-  document.querySelectorAll('details').forEach(d=>{
-    d.addEventListener('toggle',()=>{
-      const s=d.querySelector('summary');
-      if(!s) return;
-      const open=s.querySelector('.open'), close=s.querySelector('.close');
-      if(open && close){ const o=d.open; open.style.display=o?'none':''; close.style.display=o?'':'none';}
-    });
-  });
-</script>
+Best regards,
+{{EmployeeName}} • {{StoreName}}
+{{DirectPhone}} | {{Email}}
