@@ -32,7 +32,7 @@ nav_order: 1
   .main .main-content > h1:first-child { margin-top: .5rem; }
 </style>
 
-# Quirk AI (Corporate)
+# Quirk AI 
 
 Quirk AI is our **on-prem corporate assistant** that improves speed, consistency, and compliance across the dealer group while **keeping customer data private**.
 
