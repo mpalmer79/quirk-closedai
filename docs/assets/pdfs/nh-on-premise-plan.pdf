@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NH On Premise Server — Plan</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>NH On Premise Server — Plan</h1>
+      <p class="sub">Deployment plan for New Hampshire dealerships: DNS, firewall, TLS, and ops milestones.</p>
+    </div>
+  </div>
+
+  <div class="meta">
+    <span class="chip">Goal: keep voice + CRM context local</span>
+    <span class="chip">TLS at Caddy edge</span>
+    <span class="chip">PII redaction in logs</span>
+  </div>
+
+  <h2>DNS</h2>
+  <ul>
+    <li><b>Pilot:</b> keep Cloudflare in <b>DNS-only</b> (gray) mode or use registrar DNS.</li>
+    <li>CAA: allow Let’s Encrypt to issue for the domain.</li>
+  </ul>
+
+  <h2>TLS / Proxy</h2>
+  <ul>
+    <li>Terminate TLS at on-premise Caddy: <code>https://voice.quirkcars.com</code>.</li>
+    <li>Reverse proxy WebSocket stream to OpenAI Realtime.</li>
+  </ul>
+
+  <h2>Firewall</h2>
+  <ul>
+    <li>Inbound: TCP <b>80/443</b> to proxy host (Caddy).</li>
+    <li>Egress allow-list: <code>api.openai.com</code>, <code>*.twilio.com</code>, Let’s Encrypt, (Cloudflare DNS if used).</li>
+  </ul>
+
+  <h2>Hardware & OS (pilot)</h2>
+  <ul>
+    <li>4–8 vCPU, 16–32 GB RAM, 250 GB SSD/NVMe.</li>
+    <li>Ubuntu Server 22.04 LTS, static LAN IP.</li>
+    <li>~20–50 concurrent calls capacity (comfortable headroom).</li>
+  </ul>
+
+  <h2>Milestones</h2>
+  <ul>
+    <li>Provision host & VLAN; lock inbound ports; add outbound allow-list.</li>
+    <li>DNS A-record; Let’s Encrypt certificate (Caddy auto-issue).</li>
+    <li>Functional test with Twilio → Caddy → OpenAI Realtime.</li>
+    <li>Ops runbook + monitoring + change governance.</li>
+  </ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
