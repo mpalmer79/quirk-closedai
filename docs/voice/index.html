@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Voice (Realtime) — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<main class="container">
+  <div class="hero">
+    <div class="logo"><div class="logo-badge">AI</div></div>
+    <div>
+      <h1 class="title">Voice (Realtime)</h1>
+      <p class="sub">Twilio → Quirk reverse proxy (Caddy) → OpenAI Realtime. On premise isolation; no raw audio stored.</p>
+      <div class="pills">
+        <a class="pill" href="../index.html">← Back to Overview</a>
+        <a class="pill" href="../install/index.html">On Premise Install</a>
+        <a class="pill" href="../infra/nh-plan.html">NH Plan</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="grid">
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Architecture at a Glance</h3>
+      <pre class="code">
+Caller → Twilio PSTN → Twilio MediaStream
+      → wss://voice.quirkcars.com/realtime/twilio  (Caddy terminates TLS)
+      → OpenAI Realtime API (egress allow-list)
+      → back to Twilio → caller
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Twilio: TwiML Bin (Voice)</h3>
+      <pre class="code">
+<Response>
+  <Connect>
+    <Stream url="wss://voice.quirkcars.com/realtime/twilio" />
+  </Connect>
+</Response>
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Caddy (reverse proxy)</h3>
+      <pre class="code">
+voice.quirkcars.com {
+  encode zstd gzip
+  @ws {
+    header Connection *Upgrade*
+    header Upgrade websocket
+    path /realtime/*
+  }
+  reverse_proxy @ws ws://localhost:8080
+  reverse_proxy / https://static.healthcheck.local
+}
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Gateway (WebSocket)</h3>
+      <pre class="code">
+// Pseudocode
+ws_server("/realtime/twilio", (twilioSocket) => {
+  const openai = connectRealtime({ apiKey: process.env.OPENAI_API_KEY });
+  pipeBidirectional(twilioSocket, openai);
+});
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Security Notes</h3>
+      <pre class="code">
+• VLAN isolate the host. No SMB/RDP exposure.
+• Egress allow-list: *.twilio.com, api.openai.com, acme-v02.api.letsencrypt.org
+• Redact PII in logs; no raw audio stored on disk.
+      </pre>
+    </div></article>
+  </section>
+</main>
+</body>
+</html>
