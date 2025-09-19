@@ -82,7 +82,7 @@ Detailed steps live in docs/infra/.
 
 Apache-2.0. See LICENSE.
 
-## Repository structure
+## Repository structure (displays much better in Code view)
 
 </pre>
 quirk-closedai/
@@ -129,4 +129,4 @@ quirk-closedai/
 ├─ LICENSE
 └─ README.md
 
-</pre>details>
+
