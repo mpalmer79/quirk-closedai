@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Telephony Integration (Pilot)</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>Telephony Integration (Pilot)</h1>
+      <p class="sub">Twilio → Quirk Proxy (Caddy) → OpenAI Realtime.</p>
+    </div>
+  </div>
+
+  <h2>Call flow</h2>
+  <ul>
+    <li>Twilio number → TwiML Bin or Webhook → WebSocket connect to <code>wss://voice.quirkcars.com/realtime/twilio</code>.</li>
+    <li>Caddy forwards to OpenAI Realtime with bidirectional streams.</li>
+  </ul>
+
+  <h2>Twilio setup</h2>
+  <ul>
+    <li>Buy a number → Voice Configuration: TwiML Bin <i>or</i> Webhook.</li>
+    <li>Primary handler: TwiML Bin (pilot), fallback: Webhook or 404.</li>
+    <li>Recording off; media format PCM μ-law or Opus (as supported).</li>
+  </ul>
+
+  <h2>Testing</h2>
+  <ul>
+    <li>Call the number; verify “press any key” and streaming events.</li>
+    <li>Tail Caddy logs; confirm TLS and media return path.</li>
+  </ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
