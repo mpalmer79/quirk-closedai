@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Templates Catalog — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <main class="container">
+
+    <div class="hero">
+      <div class="logo"><div class="logo-badge">AI</div></div>
+      <div>
+        <h1 class="title">Templates Catalog</h1>
+        <p class="sub">Copy-ready email/SMS for every department. Replace <code>{{…}}</code> with your CRM merge fields (VinSolutions TargetFields).</p>
+        <div class="pills">
+          <a class="pill" href="../index.html">← Back to Overview</a>
+          <a class="pill" href="#sales">Sales</a>
+          <a class="pill" href="#service">Service</a>
+          <a class="pill" href="#finance">F&amp;I</a>
+          <a class="pill" href="#parts">Parts</a>
+          <a class="pill" href="#marketing">Marketing</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="grid" id="sales">
+      <!-- Sales — Internet Lead (Email) -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Sales — Internet Lead (Email)</h3>
+          <p class="card-desc">Fast, compliant first touch that confirms availability and proposes an appointment time.</p>
+          <pre class="code">
+Subject: {{FirstName}}, quick info on the {{Year}} {{Make}} {{Model}}
+
+Hi {{FirstName}},
+
+Thanks for reaching out about the {{Year}} {{Make}} {{Model}}. We have {{AvailabilitySummary}}.
+
+Highlights:
+• {{TrimOrPackage}} — {{KeyFeature1}}, {{KeyFeature2}}
+• Trade-in welcome — fast, no-obligation appraisal
+• Test drive on your schedule (we’re open {{HoursBrief}})
+
+Would {{AppointmentDayTime}} work for a quick visit? I can have the vehicle pulled up and ready.
+
+Best regards,
+{{EmployeeName}} • {{StoreName}}
+{{DirectPhone}} | {{Email}}
+
+All payments subject to credit approval. Price, terms, and availability subject to change without notice. See dealer for details.
+You received this because you contacted {{StoreName}}. To update preferences, reply to this email or call {{SalesPhone}}.
+          </pre>
+        </div>
+      </article>
+
+      <!-- Sales — Short SMS -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Sales — Internet Lead (Short SMS)</h3>
+          <p class="card-desc">Short opt-out compliant text to move the convo to a time slot.</p>
+          <pre class="code">
+Hi {{FirstName}}, it’s {{SalespersonName}} at {{StoreName}}.
+The {{Year}} {{Make}} {{Model}} you asked about is available.
+Want to swing by {{AppointmentDayTime}} or pick another time?
+Reply STOP to opt out.
+          </pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" id="service">
+      <!-- Service — Status & ETA (SMS) -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Service — Status &amp; ETA (SMS)</h3>
+          <p class="card-desc">Keep waiters informed; reduce inbound “is it done yet?” calls.</p>
+          <pre class="code">
+Hi {{FirstName}}, quick update from {{StoreName}} Service —
+Your {{Year}} {{Make}} {{Model}} is {{Status}}.
+Estimated completion: {{ETA}}.
+Reply YES to approve, or call {{ServiceNumber}} with questions.
+          </pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" id="finance">
+      <!-- F&I — Post-Sale Welcome (Email) -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">F&amp;I — Post-Sale Welcome (Email)</h3>
+          <p class="card-desc">Warm welcome + how to reach us for questions about coverage or payments.</p>
+          <pre class="code">
+Subject: Welcome to {{StoreName}} — Your purchase details
+
+Hi {{FirstName}}, thanks again for choosing {{StoreName}}!
+Attached are your purchase documents. If you have questions about
+warranty coverage or payments, contact {{FIManager}} at {{FIPhone}}.
+
+We’re here for you,
+{{StoreName}} Finance &amp; Insurance
+          </pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" id="parts">
+      <!-- Parts — Special Order Ready (SMS) -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Parts — Special Order Ready (SMS)</h3>
+          <p class="card-desc">Automates the pick-up nudge with clear next steps.</p>
+          <pre class="code">
+Hi {{FirstName}}, your part {{PartNumber}} is ready for pickup at {{StoreName}}.
+Please bring ID. Hours: {{PartsHours}}. Need shipping? Reply SHIP.
+          </pre>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid" id="marketing">
+      <!-- Marketing — Review Request (Email) -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Marketing — Review Request (Email)</h3>
+          <p class="card-desc">Polite, opt-in ask for a review with store-safe language.</p>
+          <pre class="code">
+Subject: Quick favor from {{StoreName}}
+
+Thanks again for your visit, {{FirstName}}. If we earned it,
+would you consider leaving a quick review? It helps neighbors find us:
+{{ReviewLink}}
+
+If anything wasn’t 5-star, reply here and we’ll make it right.
+          </pre>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Copy JS -->
+  <script src="../assets/js/copy.js"></script>
+</body>
+</html>
