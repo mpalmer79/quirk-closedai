@@ -1,50 +1,41 @@
 ---
-title: Home
+title: Quirk AI — Corporate Overview
 nav_order: 1
 ---
 
-# Quirk AI — Corporate Program
-Welcome to **Quirk AI** — the on-prem, corporate-managed AI platform for **Quirk Auto Dealers**.
+# Quirk AI (Corporate)
 
-<div class="hero">
+Quirk AI is our **on-prem corporate assistant** that improves speed, consistency, and compliance across the dealer group while **keeping customer data private**.
 
-**What’s here**
-- Playbooks & SOPs for every department  
-- Voice: Quirk AI Voice (OpenAI Realtime)  
-- Templates: email/SMS, ready to copy  
-- Governance & security
+{: .note }
+**Phase-1 focus**: Internal copilots for BDC, Sales, Service Writers, Parts, and Marketing. Read-only adapters to CRM/DMS (e.g., VIN Solutions). Voice pilots via Twilio → OpenAI Realtime.
 
-[Get Started →](/quirk-closedai/templates/){:.btn .btn-primary}  
-[Voice Overview →](/quirk-closedai/docs/voice/overview){:.btn}
+## Why it matters (business outcomes)
 
-</div>
+- **Response speed**: cut handling time for common tasks by **30–50%**  
+- **Consistency**: one brand voice, compliant across **13 OEMs / 20 stores**  
+- **Quality**: better lead follow-up, clearer repair notes, fewer escalations  
+- **Privacy**: on-prem isolation; PII redaction in logs
 
 ## Quick links
 
-<div class="grid">
-  <div class="card">
-    <h3>Templates</h3>
-    <p>Copy-ready Sales, Service, F&I, Parts, Accounting, BDC, Marketing, Exec.</p>
-    <p><a class="btn btn-primary" href="/quirk-closedai/templates/">Open Templates</a></p>
-  </div>
-  <div class="card">
-    <h3>Playbooks</h3>
-    <p>Departmental SOPs + a master playbook to align KPIs and escalations.</p>
-    <p><a class="btn" href="/quirk-closedai/docs/playbooks/README">Browse Playbooks</a></p>
-  </div>
-  <div class="card">
-    <h3>Voice (Realtime)</h3>
-    <p>Quirk AI Voice architecture, telephony setup, and security posture.</p>
-    <p><a class="btn" href="/quirk-closedai/docs/voice/overview">Open Voice Docs</a></p>
-  </div>
-  <div class="card">
-    <h3>Governance</h3>
-    <p>Prompt controls, data handling, and audit checkpoints.</p>
-    <p><a class="btn" href="/quirk-closedai/docs/governance">View Governance</a></p>
-  </div>
-</div>
+- [Executive Brief](overview/exec.md){: .btn .btn-primary }
+- [Architecture](overview/architecture.md){: .btn }
+- [Security Posture](overview/security.md){: .btn }
+- [Templates](../templates/){: .btn }
+- [Playbooks](../playbooks/){: .btn }
 
----
+## Where we are today
 
-### Program tagline
-<span class="badge">Corporate</span> Managed • <span class="badge">On-Prem</span> Secure • <span class="badge">Multi-Store</span> Ready
+- ✅ Prompt system + departmental personas  
+- ✅ Docs site (playbooks/templates)  
+- ✅ Voice gateway & reverse proxy (on-prem ready)  
+- 🔄 DNS + firewall steps for `voice.quirkcars.com`  
+- 🔜 Controlled read-only adapters (CRM/DMS)
+
+## Near-term milestones
+
+- Pilot go-live (1–2 stores), measure handle-time & quality  
+- Expand templates (BDC, Service, F&I)  
+- Add audit/reporting & change governance
+
