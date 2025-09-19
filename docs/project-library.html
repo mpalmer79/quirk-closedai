@@ -1,1 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quirk AI — Project Library</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <style>
+    .doc-actions { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .section { margin-top: 2.5rem; }
+  </style>
+</head>
+<body>
+<main class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo"><div class="logo-badge">AI</div></div>
+    <div>
+      <h1 class="title">Quirk AI — Project Library</h1>
+      <p class="sub">
+        Central hub for briefs, architecture notes, security posture, telephony, install guides, and department playbooks.
+        Upload PDFs to <code>docs/assets/pdfs/</code> and these cards will link to them.
+      </p>
+      <div class="pills">
+        <a class="pill" href="index.html">← Back to Home</a>
+        <a class="pill" href="templates/index.html">Templates</a>
+        <a class="pill" href="playbooks/index.html">Playbooks</a>
+        <a class="pill" href="voice/index.html">Voice</a>
+        <a class="pill" href="governance/index.html">Governance</a>
+        <a class="pill" href="install/index.html">On Premise Install</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE & STRATEGY -->
+  <section class="section">
+    <h2>Executive &amp; Strategy</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Executive Brief</h3>
+          <p class="card-desc">Business outcomes, KPIs, phasing for pilot across 13 OEMs / 20 stores.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/executive-brief.pdf">View PDF</a>
+            <a class="btn" href="overview/exec.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Corporate Overview</h3>
+          <p class="card-desc">Quirk AI overview: scope, goals, and success metrics.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/corporate-overview.pdf">View PDF</a>
+            <a class="btn" href="index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">NH On Premise Server — Plan</h3>
+          <p class="card-desc">Deployment plan for NH dealerships. DNS, firewall, TLS, ops milestones.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/nh-on-premise-plan.pdf">View PDF</a>
+            <a class="btn" href="infra/nh-plan.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE & SECURITY -->
+  <section class="section">
+    <h2>Architecture &amp; Security</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Architecture (At a Glance)</h3>
+          <p class="card-desc">High-level data flows, reverse proxy, isolation, and network posture.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/architecture-at-a-glance.pdf">View PDF</a>
+            <a class="btn" href="overview/architecture.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Security Posture</h3>
+          <p class="card-desc">Data handling, PII redaction, logging, approvals, and governance cadence.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/security-posture.pdf">View PDF</a>
+            <a class="btn" href="overview/security.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">DG-AI Architecture Overview</h3>
+          <p class="card-desc">Deeper dive on components and ops boundary conditions.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/dg-ai-architecture-overview.pdf">View PDF</a>
+            <a class="btn" href="overview/architecture.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">DNS (Cloudflare) — voice.quirkcars.com</h3>
+          <p class="card-desc">A-record/DNS-only mode for pilot, CAA for Let’s Encrypt, troubleshooting.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/dns-cloudflare-voice.pdf">View PDF</a>
+            <a class="btn" href="install/dns-cloudflare.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- VOICE (REALTIME) -->
+  <section class="section">
+    <h2>Voice (Realtime)</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Telephony Integration (Pilot)</h3>
+          <p class="card-desc">Twilio → Quirk Proxy (Caddy) → OpenAI Realtime; media return path.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/telephony-pilot.pdf">View PDF</a>
+            <a class="btn" href="voice/index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Voice Quickstart</h3>
+          <p class="card-desc">TwiML bin, webhook paths, media settings, testing notes.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/voice-quickstart.pdf">View PDF</a>
+            <a class="btn" href="voice/index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- INSTALL & OPS -->
+  <section class="section">
+    <h2>Install &amp; Ops</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">On Premise Install — Ubuntu</h3>
+          <p class="card-desc">Hardened host, Caddy reverse proxy, firewall rules, WebSocket gateway.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/on-premise-install-ubuntu.pdf">View PDF</a>
+            <a class="btn" href="install/index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Ops Runbook</h3>
+          <p class="card-desc">Start/stop, logs, TLS, deploy, and incident tips.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/ops-runbook.pdf">View PDF</a>
+            <a class="btn" href="ops/runbook.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">DG-AI Changelog</h3>
+          <p class="card-desc">Traceable changes; PR-based approvals for prompts and config.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/changelog.pdf">View PDF</a>
+            <a class="btn" href="changelog/index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- TEMPLATES & PLAYBOOKS -->
+  <section class="section">
+    <h2>Templates &amp; Playbooks</h2>
+    <div class="grid">
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Templates Catalog</h3>
+          <p class="card-desc">Copy-ready email/SMS with VinSolutions merge fields.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/templates-catalog.pdf">View PDF</a>
+            <a class="btn" href="templates/index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Department Playbooks — Index</h3>
+          <p class="card-desc">Quick links to Sales, Service, Parts, F&amp;I, Accounting, Executive.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/playbooks-index.pdf">View PDF</a>
+            <a class="btn" href="playbooks/index.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Optional: individual department PDFs (add as you export them) -->
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Sales Department Playbook</h3>
+          <p class="card-desc">Showroom handoffs, trade appraisal intake, delivery checklists.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/playbook-sales.pdf">View PDF</a>
+            <a class="btn" href="playbooks/sales_playbook.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Service Department Playbook</h3>
+          <p class="card-desc">Write-up scripts, MPI flow, approvals, ETA updates, and QA.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/playbook-service.pdf">View PDF</a>
+            <a class="btn" href="playbooks/service_playbook.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Parts Department Playbook</h3>
+          <p class="card-desc">Counter workflows, special-order promises, returns, inventory notes.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/playbook-parts.pdf">View PDF</a>
+            <a class="btn" href="playbooks/parts_playbook.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">F&amp;I Department Playbook</h3>
+          <p class="card-desc">Menu presentation, compliance language, post-sale cadence.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/playbook-finance.pdf">View PDF</a>
+            <a class="btn" href="playbooks/finance_playbook.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"></div>
+        <div class="card-body">
+          <h3 class="card-title">Accounting Department Playbook</h3>
+          <p class="card-desc">Deal posting checks, schedules review, month-end close checklist.</p>
+          <div class="doc-actions">
+            <a class="btn" href="assets/pdfs/playbook-accounting.pdf">View PDF</a>
+            <a class="btn" href="playbooks/accounting_playbook.html">Open HTML</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- HOW TO ADD PDFs -->
+  <section class="section">
+    <h2>How to add a PDF</h2>
+    <ol>
+      <li>Export the page as PDF (browser: <em>Print → Save as PDF</em>).</li>
+      <li>Upload it to <code>docs/assets/pdfs/</code> in the repo.</li>
+      <li>Update the card’s <code>href</code> to point to your file (e.g., <code>assets/pdfs/executive-brief.pdf</code>).</li>
+    </ol>
+    <p><a class="btn" href="index.html">← Back to Home</a></p>
+  </section>
+
+</main>
+</body>
+</html>
 
