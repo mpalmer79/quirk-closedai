@@ -3,36 +3,47 @@ title: Quirk AI — Overview
 nav_order: 1
 ---
 
-<!-- Inline overrides so they always load on this page -->
+<!-- Page-only layout overrides (works without any global include) -->
 <style>
-  /* Adjust how wide you want the light-blue sidebar */
-  :root { --quirk-sidebar-width: 360px; } /* tweak 320–400px to taste */
+  /* Sidebar width you want (tweak 320–420px to taste) */
+  :root { --quirk-sidebar-width: 360px; }
 
-  /* Desktop+ : widen sidebar and shift main area */
+  /* On desktop, override the theme's grid to widen the sidebar
+     and position the main area as the second column. */
   @media (min-width: 992px) {
+    /* The two-column grid container used by Just the Docs */
+    .page {
+      display: grid !important;
+      grid-template-columns: var(--quirk-sidebar-width) minmax(0, 1fr) !important;
+      column-gap: 0 !important;
+    }
+
+    /* Sidebar column */
     .side-bar {
       width: var(--quirk-sidebar-width) !important;
+      max-width: var(--quirk-sidebar-width) !important;
+      flex: 0 0 var(--quirk-sidebar-width) !important;
     }
-    .main {
-      margin-left: var(--quirk-sidebar-width) !important;
-    }
+
+    /* Main column is placed by the grid; remove any left margin hacks */
+    .main { margin-left: 0 !important; }
   }
 
-  /* Center the main content column and the header/search row */
-  .main .main-content,
-  .main .main-header {
-    max-width: 960px;         /* readable column; adjust if desired */
+  /* Center the header/search row and the readable content column */
+  .main .main-header,
+  .main .main-content {
+    max-width: 960px;      /* readable line length */
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  /* Optional: tighten the top spacing under the header */
+  /* Optional: slightly tighter space under the header on this page */
   .main .main-content > h1:first-child { margin-top: .5rem; }
 </style>
 
-# Quirk AI 
+# Quirk AI
 
 Quirk AI is our **on-prem corporate assistant** that improves speed, consistency, and compliance across the dealer group while **keeping customer data private**.
 
