@@ -1,1 +1,1 @@
-
+RO {{ro_number}} update: We recommend {{repair_1}} (est {{line_total_1}}) and {{repair_2}} (est {{line_total_2}}). Total before tax/fees: {{subtotal}}. Reply YES to approve all, or 1/2 to approve individually. ETA {{eta}} after approval. {{opt_out_text}}
