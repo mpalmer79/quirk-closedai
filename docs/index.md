@@ -3,40 +3,68 @@ title: Quirk AI — Overview
 nav_order: 1
 ---
 
-<!-- Page layout: main content + right-side info panel -->
+<!-- Layout: full-width frame (minus sidebar) with centered main + right-aside -->
 <style>
-  .home-split{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 320px; /* main | aside */
-    gap:2rem;
-    align-items:start;
-  }
-  @media (max-width:992px){
-    .home-split{ grid-template-columns:1fr; }
-    .home-aside{ order:2; }
+  /* Fallbacks in case these aren't set globally */
+  :root{
+    --quirk-sidebar-width: 340px;   /* must match your left nav width */
+    --quirk-gutter: 24px;           /* page edge padding (match left edge feel) */
   }
 
-  /* Hero + readability tweaks */
+  /* Frame spans from the right edge of the sidebar to the right edge of viewport */
+  .home-wrap{
+    width: calc(100vw - var(--quirk-sidebar-width));
+    margin-left: auto;                  /* anchor to the right side of the page */
+    padding-right: var(--quirk-gutter); /* equal breathing room at right edge   */
+  }
+
+  /* Two columns: centered main (flexible) + fixed-width aside (card) */
+  .home-split{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px; /* main | aside */
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Center the readable main column inside its grid area */
+  .home-main{
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Sticky right-hand card */
+  .home-aside{
+    position: sticky; top: 1rem;
+    border: 1px solid #e5e7eb; border-radius: 12px;
+    padding: 16px; background: #f8fbff;
+  }
+  .home-aside h3{ margin: .25rem 0 .25rem; }
+  .home-aside .meta{ color:#6b7280; font-size:.9rem; margin:-.1rem 0 .5rem; }
+  .home-aside .btn{ display:inline-block; margin-top:.5rem; }
+
+  /* Hero/readability */
   .home-hero h1{ margin-top:.25rem; margin-bottom:.25rem; }
   .home-hero .lead{ font-size:1.1rem; color:#374151; }
   .btn-row{ display:flex; flex-wrap:wrap; gap:.5rem; margin:.75rem 0 1rem; }
 
-  /* Aside card */
-  .home-aside{
-    position:sticky; top:1rem;
-    border:1px solid #e5e7eb; border-radius:12px;
-    padding:16px; background:#f8fbff;
+  /* Mobile: collapse to one column, add side paddings */
+  @media (max-width: 992px){
+    .home-wrap{
+      width: 100vw;
+      padding-left: var(--quirk-gutter);
+      padding-right: var(--quirk-gutter);
+    }
+    .home-split{ grid-template-columns: 1fr; }
+    .home-aside{ order: 2; } /* show aside after the main on small screens */
   }
-  .home-aside h3{ margin:.25rem 0 .25rem; }
-  .home-aside .meta{ color:#6b7280; font-size:.9rem; margin:-.1rem 0 .5rem; }
-  .home-aside ul{ margin-top:.25rem; }
-  .home-aside .btn{ display:inline-block; margin-top:.5rem; }
 </style>
 
-<div class="home-split">
+<div class="home-wrap">
+  <div class="home-split">
 
-<!-- IMPORTANT: markdown="1" makes kramdown render Markdown inside this div -->
-<div class="home-main" markdown="1">
+    <!-- markdown="1" ensures headings/links render inside this div -->
+    <div class="home-main" markdown="1">
 
 <div class="home-hero">
 
@@ -80,25 +108,24 @@ Quirk AI is our **on premise corporate assistant** that improves speed, consiste
 - Expand templates (BDC, Service, F&I)  
 - Add audit/reporting & change governance
 
-</div> <!-- /home-main -->
+    </div><!-- /home-main -->
 
-<aside class="home-aside">
-  <h3>NH On Premise Server</h3>
-  <div class="meta">Deployment for New Hampshire dealerships</div>
+    <aside class="home-aside">
+      <h3>NH On Premise Server</h3>
+      <div class="meta">Deployment for New Hampshire dealerships</div>
+      <p><strong>Goal:</strong> keep voice + CRM context local, with a hardened egress path to Twilio/OpenAI.</p>
+      <ul>
+        <li><strong>DNS:</strong> keep Cloudflare in <em>DNS-only</em> (gray) for pilot, or move to registrar/self-hosted DNS later.</li>
+        <li><strong>TLS/Proxy:</strong> on premise Caddy terminates TLS at <code>https://voice.quirkcars.com</code>.</li>
+        <li><strong>Firewall:</strong> inbound <code>80/443</code> → proxy; egress allow-list to Twilio/OpenAI/Let’s Encrypt.</li>
+        <li><strong>PII:</strong> redact names/phones/emails in logs; no raw audio stored.</li>
+      </ul>
 
-  <p><strong>Goal:</strong> keep voice + CRM context local, with a hardened egress path to Twilio/OpenAI.</p>
+      <p><strong>Replace Cloudflare?</strong> Yes for DNS (registrar or self-host). WAF/DDoS/CDN require alternatives (Nginx+ModSecurity, ISP scrubbing) or accepting the risk.</p>
 
-  <ul>
-    <li><strong>DNS:</strong> keep Cloudflare in <em>DNS-only</em> (gray) for pilot, or move to registrar/self-hosted DNS later.</li>
-    <li><strong>TLS/Proxy:</strong> on premise Caddy terminates TLS at <code>https://voice.quirkcars.com</code>.</li>
-    <li><strong>Firewall:</strong> inbound <code>80/443</code> → proxy; egress allow-list to Twilio/OpenAI/Let’s Encrypt.</li>
-    <li><strong>PII:</strong> redact names/phones/emails in logs; no raw audio stored.</li>
-  </ul>
+      <a class="btn btn-primary" href="infra/nh-on-premise.html">Read the NH plan →</a><br>
+      <a class="btn" href="infra/server-install-on-premise.html">On Premise Install guide →</a>
+    </aside>
 
-  <p><strong>Replace Cloudflare?</strong> Yes for DNS (registrar or self-host). WAF/DDoS/CDN require alternatives (Nginx+ModSecurity, ISP scrubbing) or accepting the risk.</p>
-
-  <a class="btn btn-primary" href="infra/nh-on-premise.html">Read the NH plan →</a><br>
-  <a class="btn" href="infra/server-install-on-premise.html">On Premise Install guide →</a>
-</aside>
-
-</div>
+  </div><!-- /home-split -->
+</div><!-- /home-wrap -->
