@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Quirk AI Initiatives</title>
-  <!-- Green theme CSS you already added -->
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
@@ -18,7 +17,6 @@
       <p class="sub">Live tools and in-flight projects that use AI to improve efficiency across Quirk Auto Dealerships.</p>
 
       <div class="pills">
-        <!-- Update this href if your project library lives at a different URL -->
         <a class="pill pill-primary" href="https://mpalmer79.github.io/Quirk-AI-Project-Overview/">Open Project Library</a>
         <a class="pill" href="templates/index.html">Templates</a>
         <a class="pill" href="voice/index.html">AI Voice Agents</a>
@@ -29,10 +27,9 @@
     </div>
   </div>
 
-  <!-- GRID ROW 1 -->
+  <!-- ROW 1: Templates + Playbooks -->
   <section class="grid">
 
-    <!-- Templates -->
     <article class="card">
       <div class="card-top"></div>
       <div class="card-body">
@@ -47,7 +44,6 @@
       </div>
     </article>
 
-    <!-- Playbooks -->
     <article class="card">
       <div class="card-top"></div>
       <div class="card-body">
@@ -61,7 +57,11 @@
       </div>
     </article>
 
-    <!-- Voice -->
+  </section>
+
+  <!-- ROW 2: Voice + NH Plan (moved up here) -->
+  <section class="grid">
+
     <article class="card">
       <div class="card-top"></div>
       <div class="card-body">
@@ -74,11 +74,22 @@
         <div class="cta"><a class="btn" href="voice/index.html">Open Voice Docs</a></div>
       </div>
     </article>
+
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">NH On Premise Server — Plan</h3>
+        <p class="card-desc">Deployment plan for New Hampshire dealerships. DNS strategy, firewall, TLS, and ops notes.</p>
+        <div class="badges"><span class="badge plan">Planning</span></div>
+        <div class="cta"><a class="btn" href="infra/nh-plan.html">Read Plan</a></div>
+      </div>
+    </article>
+
   </section>
 
-  <!-- GRID ROW 2 -->
+  <!-- ROW 3: Governance + Install -->
   <section class="grid">
-    <!-- Governance -->
+
     <article class="card">
       <div class="card-top"></div>
       <div class="card-body">
@@ -89,7 +100,6 @@
       </div>
     </article>
 
-    <!-- Install -->
     <article class="card">
       <div class="card-top"></div>
       <div class="card-body">
@@ -100,16 +110,6 @@
       </div>
     </article>
 
-    <!-- NH Plan -->
-    <article class="card">
-      <div class="card-top"></div>
-      <div class="card-body">
-        <h3 class="card-title">NH On Premise Server — Plan</h3>
-        <p class="card-desc">Deployment plan for New Hampshire dealerships. DNS strategy, firewall, TLS, and ops notes.</p>
-        <div class="badges"><span class="badge plan">Planning</span></div>
-        <div class="cta"><a class="btn" href="infra/nh-plan.html">Read Plan</a></div>
-      </div>
-    </article>
   </section>
 
 </main>
