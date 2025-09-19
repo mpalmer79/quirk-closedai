@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Executive Brief — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="badge">AI</div>
+      <div class="hgroup">
+        <h1>Executive Brief — Quirk AI (Corporate)</h1>
+        <p class="sub">On-premise corporate assistant improving speed, consistency, and compliance across 13 OEMs / 20 stores.</p>
+      </div>
+    </div>
+
+    <div class="meta">
+      <span class="chip">Status: Pilot (Internal)</span>
+      <span class="chip">Scope: BDC, Sales, Service, Parts, Marketing</span>
+      <span class="chip">Privacy: On-prem isolation</span>
+    </div>
+
+    <h2>Why it matters (business outcomes)</h2>
+    <ul>
+      <li><b>Response speed:</b> reduce handle time for common tasks by <b>30–50%</b>.</li>
+      <li><b>Consistency:</b> one brand voice, compliant across <b>13 OEMs / 20 stores</b>.</li>
+      <li><b>Quality:</b> better lead follow-up, clearer repair notes, fewer escalations.</li>
+      <li><b>Privacy:</b> on-premise isolation; PII redaction in logs.</li>
+    </ul>
+
+    <h2>Phase-1 scope</h2>
+    <ul>
+      <li>Internal copilots for BDC, Internet/Sales, Service Writers, Parts, Marketing.</li>
+      <li>Template bundles (email/SMS) + Department playbooks (SOPs).</li>
+      <li>Read-only adapters to CRM/DMS (e.g., VIN Solutions).</li>
+      <li>Voice pilots via Twilio → reverse proxy (Caddy) → OpenAI Realtime.</li>
+    </ul>
+
+    <h2>Out of scope (Phase-1)</h2>
+    <ul>
+      <li>Direct write-backs to DMS/CRM without review.</li>
+      <li>Public model exposure; data remains private.</li>
+      <li>Autonomous actions without human approval.</li>
+    </ul>
+
+    <h2>Governance & risk controls</h2>
+    <ul>
+      <li>System/meta prompts; guardrail language; test harness.</li>
+      <li>On-premise reverse proxy; egress allow-list; TLS at the edge.</li>
+      <li>PII redaction in logs; PR-based change management.</li>
+    </ul>
+
+    <h2>Timeline (indicative)</h2>
+    <table class="table">
+      <tr><th>Phase</th><th>Weeks</th><th>Outcomes</th></tr>
+      <tr><td>P1</td><td>0–4</td><td>Internal copilots + templates; voice pilot path; security posture</td></tr>
+      <tr><td>P2</td><td>5–12</td><td>Playbooks, automations; limited write-backs with approvals</td></tr>
+      <tr><td>P3</td><td>13+</td><td>Reporting, A/B tests; broader integrations</td></tr>
+    </table>
+
+    <hr>
+    <div class="footer">© Quirk Auto Dealers — Quirk AI (Corporate)</div>
+  </div>
+</body>
+</html>
