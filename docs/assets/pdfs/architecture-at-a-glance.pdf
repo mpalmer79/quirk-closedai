@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Architecture — At a Glance</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>Architecture — At a Glance</h1>
+      <p class="sub">High-level data flows, isolation, and control points.</p>
+    </div>
+  </div>
+
+  <h2>Flow</h2>
+  <ul>
+    <li>Users (BDC/Sales/Service/Parts/Marketing) interact with copilots (web/voice).</li>
+    <li>On-prem Caddy terminates TLS, proxies WebSocket to OpenAI Realtime.</li>
+    <li>Adapters are read-only to CRM/DMS (e.g., VIN Solutions) in Phase-1.</li>
+  </ul>
+
+  <h2>Control points</h2>
+  <ul>
+    <li>System/meta prompts; redaction; deterministic uncertainty handling.</li>
+    <li>Change mgmt via PR; test harness; prompt linting.</li>
+    <li>Logs with PII redaction; no raw audio storage.</li>
+  </ul>
+
+  <h2>Network</h2>
+  <ul>
+    <li>Separate voice/servers VLAN; no SMB/RDP exposed.</li>
+    <li>Inbound 80/443 only; egress allow-list to OpenAI, Twilio, Let’s Encrypt.</li>
+  </ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
