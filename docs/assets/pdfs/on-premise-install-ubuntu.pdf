@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>On Premise Install — Ubuntu</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>On Premise Install — Ubuntu 22.04 LTS</h1>
+      <p class="sub">Hardened host, Caddy reverse proxy, firewall, and gateway.</p>
+    </div>
+  </div>
+
+  <h2>Steps</h2>
+  <ol>
+    <li>Provision VM/host; static IP; join voice/servers VLAN.</li>
+    <li>Install Docker + Caddy; open TCP 80/443 inbound only.</li>
+    <li>Set Caddyfile for <code>voice.quirkcars.com</code>; Let’s Encrypt auto-issue.</li>
+    <li>Deploy WebSocket gateway container; set <code>OPENAI_API_KEY</code>.</li>
+    <li>Test with Twilio trial number; validate logs and TLS chain.</li>
+  </ol>
+
+  <h2>Firewall</h2>
+  <ul><li>Egress allow-list: OpenAI, Twilio, Let’s Encrypt (and Cloudflare DNS if used).</li></ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
