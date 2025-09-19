@@ -1,74 +1,129 @@
-Project Name: Dealer Group Closed AI Assistant (DG‑AI)
+# Quirk AI 
+_On-prem corporate server for Quirk Auto Dealers_
 
-Purpose: Stand up an on‑prem, closed AI assistant that improves efficiency, consistency, and profitability across sales, service, parts, finance, and marketing while safeguarding data and complying with OEM and regulatory requirements.
+This repository is the working blueprint to deploy a **closed, on-premise** server that improves efficiency, consistency, and profitability across **Sales, Service, Parts, F&I, BDC, and Marketing**—while safeguarding data and meeting OEM/regulatory requirements.
 
-Scope (Phase 1):
+---
 
-Internal assistance for BDC, Internet Sales, Showroom, Service Writers, Parts, and Marketing.
+## What’s included
 
-Text generation, summarization, classification, checklisting, and form guidance.
+- **Prompt System**
+  - `config/system_prompt.md` – master system style/guardrails  
+  - `config/meta_prompt.md` – how the assistant plans/asks for missing info  
+  - `config/prompts/*` – department personas & SOP hooks (Sales, Service, Marketing, Finance, Voice)
+- **Voice (Realtime)**
+  - FastAPI gateway that bridges **Twilio Media Streams ↔ OpenAI Realtime**
+  - Reverse proxy (Caddy) with automatic TLS for `voice.quirkcars.com`
+- **Docs site** (GitHub Pages, Just-the-Docs)
+  - Templates (email/SMS), department playbooks, governance, infra how-tos, runbooks
+- **Tests**
+  - Prompt smoke tests and examples to keep tone/compliance from drifting
 
-Read‑only or controlled adapters to CRM (e.g., VIN Solutions), DMS, inventory feeds, and website forms.
+---
 
-Out‑of‑Scope (Phase 1):
+## Phase-1 Scope (pilot)
 
-Direct database writes to DMS/CRM.
+- Internal copilots for BDC, Internet Sales, Showroom, Service Writers, Parts, Marketing  
+- Text generation, summarization, classification, checklists, guided forms  
+- **Read-only** adapters to CRM/DMS (e.g., VIN Solutions), inventory feeds, site forms
 
-Public web access; model remains closed/offline (except whitelisted OEM docs if mirrored on‑prem).
+**Out of scope (P1):** direct DMS/CRM writes; public internet access; autonomous actions without human review.
 
-Autonomous actions without human review.
+---
 
-Primary Goals:
+## Goals & guardrails
 
-Reduce handle time for common tasks by 30–50% within 90 days of pilot.
+**Primary goals**
+- Reduce handle time on common tasks by **30–50%** within 90 days  
+- Standardize tone & compliance across stores/brands  
+- Centralize SOPs → reusable prompts
 
-Standardize tone and compliance across stores/brands.
+**Safety constraints**
+- On-prem hosting; no PII leaves the network  
+- Encryption in transit; logging with **redaction** (VIN/email/phone)  
+- OEM voice + legal/TCPA/UDAP compliance
 
-Centralize knowledge (playbooks, SOPs, scripts) into reusable prompts.
+**Governance**
+- PR-based prompt changes, changelog, prompt tests
 
-Constraints:
+---
 
-On‑prem hosting, no PII leaves network; encryption at rest and in transit.
+## Quick start
 
-OEM brand voice, legal/regulatory compliance (TCPA, UDAP, etc.).
+### A) Docs site (already live via GitHub Pages)
+- The site builds from `/docs`. Push a commit to update it.
+- Local preview (optional):
+  ```bash
+  # requires Ruby/Jekyll, optional for contributors
+  bundle install
+  bundle exec jekyll serve --livereload
 
-Key Stakeholders: IT (infra/security), Operations leadership, GSMs/FSMs, BDC Managers, Service Directors, Marketing.
+### DNS + networking (summary)
+  Cloudflare DNS → A record: voice → <public_IP> (DNS only, gray cloud)
 
-Success Metrics: SLA response speed, adoption by department, CSAT (internal), lead response quality (external), rework/QA defects, compliance exceptions.
+Open firewall/NAT: forward TCP 80/443 → proxy host (Caddy)
 
-Risks & Mitigations:
+Caddy auto-issues TLS via Let’s Encrypt (needs port 80 reachable)
 
-Hallucination → strict system prompt, retrieval grounding, uncertainty handling.
+Detailed steps live in docs/infra/.
 
-Data exposure → on‑prem isolation, role‑based access, logging, redaction.
+## Environmental variables
 
-Drift → PR‑based prompt governance, change log, test harness.
+| Key                     | Where            | Purpose                                                                |
+| ----------------------- | ---------------- | ---------------------------------------------------------------------- |
+| `OPENAI_API_KEY`        | `.env` / secrets | API key for Realtime/Chat                                              |
+| `OPENAI_REALTIME_MODEL` | `.env`           | Realtime model name (e.g., `gpt-realtime-preview`)                     |
+| `SYSTEM_PROMPT_PATH`    | `.env`           | Path to system instructions (default `config/prompts/voice_system.md`) |
+| `BIDIRECTIONAL_STREAMS` | `.env`           | `true/false` for Twilio media return path                              |
+| `DOMAIN`                | `deploy/.env`    | Public FQDN (e.g., `voice.quirkcars.com`)                              |
+| `LETS_ENCRYPT_EMAIL`    | `deploy/.env`    | ACME contact for TLS issuance                                          |
 
-Phasing:
+## License
 
-P1 (0–4 wks): Internal copilots + prompt repo; read‑only adapters.
+Apache-2.0. See LICENSE.
 
-P2 (5–12 wks): Department playbooks, basic automations; limited write‑backs with approvals.
 
-P3 (13+ wks): Expanded automations, reporting, A/B tests, broader integrations.
-
-dealer-ai/
+quirk-closedai/
 ├─ config/
-│ ├─ system_prompt.md
-│ ├─ meta_prompt.md
-│ └─ prompts/
-│ ├─ sales.md
-│ ├─ service.md
-│ ├─ marketing.md
-│ └─ finance.md
+│  ├─ system_prompt.md
+│  ├─ meta_prompt.md
+│  └─ prompts/
+│     ├─ sales.md
+│     ├─ service.md
+│     ├─ marketing.md
+│     ├─ finance.md
+│     └─ voice_system.md
+├─ docs/
+│  ├─ index.md                           # site home (Just-the-Docs)
+│  ├─ templates/                         # CRM-ready email/SMS bundles
+│  │  └─ sales/index.md
+│  ├─ playbooks/                         # departmental SOPs
+│  ├─ voice/
+│  │  ├─ overview.md
+│  │  └─ quickstart.md
+│  ├─ infra/
+│  │  ├─ server-install.md
+│  │  ├─ security-baseline.md
+│  │  └─ dns-cloudflare.md
+│  └─ ops/
+│     └─ runbook.md
 ├─ src/
-│ ├─ server.py
-│ ├─ adapters/
-│ │ ├─ __init__.py
-│ │ └─ vinsolutions.py # stub for read-only operations
-│ └─ utils/
-│ └─ prompt_loader.py
+│  └─ voice_gateway/
+│     ├─ server.py                       # Twilio WS endpoint (/realtime/twilio)
+│     ├─ openai_bridge.py                # OpenAI Realtime websocket client
+│     ├─ audio_utils.py                  # μ-law/PCM helpers, resampling
+│     └─ policy.py                       # redaction utils (VIN/email/phone)
 ├─ tests/
-│ └─ test_prompts.py
+│  └─ test_prompts.py
+├─ deploy/
+│  ├─ compose.yml                        # Caddy + Gateway stack
+│  ├─ gateway.Dockerfile
+│  ├─ .env.example
+│  └─ caddy/
+│     └─ Caddyfile
 ├─ .env.example
+├─ requirements.txt
+├─ .gitignore
+├─ LICENSE
 └─ README.md
+
