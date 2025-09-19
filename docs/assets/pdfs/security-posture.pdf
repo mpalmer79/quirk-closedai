@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Security Posture — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>Security Posture — Quirk AI</h1>
+      <p class="sub">Data handling, logging, approvals, and governance.</p>
+    </div>
+  </div>
+
+  <h2>Data handling</h2>
+  <ul>
+    <li>On-premise isolation; TLS at the edge; no public model access.</li>
+    <li>PII redaction in logs (names/phones/emails).</li>
+    <li>Scoped, read-only adapters to CRM/DMS in Phase-1.</li>
+  </ul>
+
+  <h2>Prompt & model controls</h2>
+  <ul>
+    <li>System/meta prompts; persona scoping per department.</li>
+    <li>Uncertainty handling (“I’m not sure … here’s what I can do”).</li>
+    <li>Offline test harness; regression checks; changelog.</li>
+  </ul>
+
+  <h2>Governance</h2>
+  <ul>
+    <li>PR-based change; approvers by role; audit trail.</li>
+    <li>Release notes; playbook updates; training refresh cadence.</li>
+  </ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
