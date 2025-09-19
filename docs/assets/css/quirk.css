@@ -1,4 +1,4 @@
-/* --- Quirk extras (you can keep your previous small helpers if you want) --- */
+/* --- Quirk extras (branding) --- */
 .badge {
   display: inline-block; padding: 2px 8px; border-radius: 999px;
   background: #e6f7f1; color: #0b2e5b; font-size: 12px; font-weight: 600;
@@ -8,38 +8,46 @@ a.btn-primary { border-radius: 8px; }
 .site-logo img { max-height: 32px; }
 .doc-logo img { max-width: 520px; height: auto; }
 
-/* --- Just the Docs layout overrides: make the sidebar narrower & hug the left --- */
-/* Pick your preferred width once; 240px is a good balance */
-:root { --quirk-nav-width: 240px; }
+/* --- Sidebar layout overrides for Just the Docs --- */
+/* Set your desired nav width once */
+:root {
+  /* Just the Docs reads --nav-width for its layout; override it */
+  --nav-width: 240px;     /* try 220px or 200px if you want slimmer */
+}
 
-/* Desktop+ */
+/* Desktop+ layout */
 @media (min-width: 55rem) {
-  /* Sidebar: push fully left and tighten padding */
+
+  /* Make the sidebar hug the far-left of the viewport */
   .side-bar {
-    position: fixed;           /* ensure it hugs the viewport left */
+    position: fixed;        /* pull it out of the centered container */
+    top: 0;
+    bottom: 0;
     left: 0;
-    width: var(--quirk-nav-width) !important;
+    width: var(--nav-width) !important;
     padding-left: 12px;
     padding-right: 10px;
+    overflow: auto;         /* scroll sidebar independently if long */
+    z-index: 1000;          /* stay above page content */
   }
+
+  /* Tighten spacing inside the sidebar */
   .side-bar .site-header { padding-left: 8px; padding-right: 6px; }
   .side-bar .site-nav    { padding-left: 6px; padding-right: 6px; }
   .side-bar .nav-list .nav-list-item { margin-bottom: 4px; }
 
-  /* Main content: align with the new, smaller nav width */
+  /* Shift main content over exactly the sidebar width */
   .main {
-    margin-left: var(--quirk-nav-width) !important;
+    margin-left: var(--nav-width) !important;
   }
 
-  /* Give the reading column more room (optional) */
+  /* Give content a comfortable max width */
   .main-content {
-    max-width: 1100px;   /* increase if you want a wider reading column */
+    max-width: 1100px;      /* bump to 1180px if you want a wider column */
   }
 }
 
-/* Large desktop (slightly wider content if desired) */
+/* Larger desktops: slightly wider reading column (optional) */
 @media (min-width: 75rem) {
   .main-content { max-width: 1180px; }
 }
-
-/* Mobile/tablet: leave defaults; JTD collapses nav automatically */
