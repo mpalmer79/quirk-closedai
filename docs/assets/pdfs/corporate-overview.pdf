@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Corporate Overview — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <div class="badge">AI</div>
+      <div class="hgroup">
+        <h1>Quirk AI — Corporate Overview</h1>
+        <p class="sub">Overview, scope, outcomes, and program links.</p>
+      </div>
+    </div>
+
+    <div class="meta">
+      <span class="chip">Internal</span>
+      <span class="chip">On-premise</span>
+      <span class="chip">Multi-store ready</span>
+    </div>
+
+    <h2>Summary</h2>
+    <p>Quirk AI is our on-premise corporate assistant for the dealer group, designed to improve efficiency and compliance while keeping customer data private. Phase-1 focuses on internal copilots (BDC, Sales, Service, Parts, Marketing), template bundles, departmental playbooks, and a pilot for Voice (Twilio → Caddy → OpenAI Realtime).</p>
+
+    <h2>Quick links</h2>
+    <ul>
+      <li>Templates Catalog</li>
+      <li>Playbooks (Department SOPs)</li>
+      <li>Voice (Realtime) docs</li>
+      <li>Governance & Security posture</li>
+      <li>On-Premise Install (Ubuntu)</li>
+      <li>NH On-Premise Server — Plan</li>
+    </ul>
+
+    <h2>Where we are today</h2>
+    <ul>
+      <li>Prompt system + departmental personas</li>
+      <li>Docs site (playbooks/templates)</li>
+      <li>Voice gateway & reverse proxy (on-prem ready)</li>
+      <li>DNS + firewall steps for <code>voice.quirkcars.com</code></li>
+      <li>Controlled read-only adapters (CRM/DMS)</li>
+    </ul>
+
+    <h2>Near-term milestones</h2>
+    <ul>
+      <li>Pilot go-live (1–2 stores), measure handle-time & quality</li>
+      <li>Expand templates (BDC, Service, F&I)</li>
+      <li>Add reporting, audit, and change governance</li>
+    </ul>
+
+    <hr>
+    <div class="footer">© Quirk Auto Dealers — Quirk AI (Corporate)</div>
+  </div>
+</body>
+</html>
