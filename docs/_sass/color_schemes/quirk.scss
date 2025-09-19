@@ -1,0 +1,41 @@
+/* Quirk color scheme for Just the Docs
+   NOTE: Update these HEX values to your exact brand if needed.
+   Suggested starters:
+   - Quirk Green (primary): #00a870
+   - Deep Navy (headings/sidebar): #0b2e5b
+   - Slate text: #1f2937
+*/
+
+$body-background-color: #ffffff !default;
+$sidebar-color: #0b2e5b !default;
+$body-text-color: #1f2937 !default;
+$body-heading-color: #0b2e5b !default;
+
+$link-color: #00a870 !default;
+$btn-primary-color: #00a870 !default;
+$nav-child-link-color: #0b2e5b !default;
+
+$code-background-color: #f6faf8 !default; /* subtle mint tint behind code blocks */
+$search-background-color: #f8fafc !default;
+
+/* Optional: card helper (used by index hero/cards) */
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(11, 46, 91, 0.06);
+}
+.card h3 { margin-top: 0; color: $body-heading-color; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.hero {
+  padding: 28px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0,168,112,.09), rgba(11,46,91,.08));
+  border: 1px solid rgba(11,46,91,.12);
+  margin-bottom: 20px;
+}
