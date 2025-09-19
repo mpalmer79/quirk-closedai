@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280" height="80" viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quirk AI Voice badge">
+  <style>
+    .q-green { fill:#00A870; }
+    .q-navy  { fill:#0B2E5B; }
+    .text-navy { fill:#0B2E5B; }
+    .text-green { fill:#00A870; }
+    .word { font: 700 30px/1.1 "Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  </style>
+
+  <!-- Monogram -->
+  <g transform="translate(12,12)">
+    <circle cx="28" cy="28" r="25" class="q-navy"/>
+    <rect x="38" y="36" width="14" height="9" rx="4.5" transform="rotate(-35 38 36)" fill="#FFFFFF"/>
+    <path d="M44 45c6 4 10 8 12 12" fill="none" stroke="#00A870" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Text -->
+  <g transform="translate(78,48)">
+    <text class="word text-navy">Quirk </text>
+    <text x="82" class="word text-green">AI </text>
+    <text x="130" class="word text-navy">Voice</text>
+  </g>
+</svg>
