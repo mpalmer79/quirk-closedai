@@ -1,1 +1,1 @@
-
+Hi {{first_name}}, it’s {{salesperson_name}} at {{store_name}}. The {{year}} {{make}} {{model}} you asked about is available. Want to swing by {{appointment_day_time}} or pick another time? {{opt_out_text}}
