@@ -1,41 +1,31 @@
-<!-- Quirk Closed AI : site-wide layout overrides for Just the Docs -->
+<!-- Quirk Closed AI: reset + safe layout overrides for Just the Docs -->
 <style>
-  /* TUNE THIS to the width you want for the light-blue nav */
-  :root { --quirk-sidebar-width: 360px; } /* try 340–400px */
+  /* Desired left sidebar width */
+  :root { --quirk-sidebar-width: 340px; } /* adjust 320–380px as you like */
 
-  /* Desktop and up: override the theme's grid so the sidebar is wider
-     and the main area sits to the right without manual margins. */
+  /* Desktop: restore default flow (no grid), widen sidebar, push main over */
   @media (min-width: 992px) {
-    /* The 2-column grid container */
-    .page {
-      display: grid !important;
-      grid-template-columns: var(--quirk-sidebar-width) minmax(0, 1fr) !important;
-      column-gap: 0 !important;
-    }
+    .page { display: block !important; }
 
-    /* Sidebar column itself */
     .side-bar {
       width: var(--quirk-sidebar-width) !important;
       max-width: var(--quirk-sidebar-width) !important;
       flex: 0 0 var(--quirk-sidebar-width) !important;
     }
-
-    /* Main column—no manual left margin when using grid */
     .main {
-      margin-left: 0 !important;
+      margin-left: var(--quirk-sidebar-width) !important;
     }
   }
 
-  /* Center the page header (search row) AND the content column */
+  /* Center the header/search row and content column on every page */
   .main .main-header,
   .main .main-content {
-    max-width: 960px;      /* readable line length; tweak if you like */
+    max-width: 960px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  /* Optional: slightly tighten spacing under the header on landing page */
   .main .main-content > h1:first-child { margin-top: .5rem; }
 </style>
