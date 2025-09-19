@@ -1,5 +1,5 @@
 # Quirk AI 
-_On-prem corporate server for Quirk Auto Dealers_
+_On-premises corporate server for Quirk Auto Dealers_
 
 This repository is the working blueprint to deploy a **closed, on-premise** server that improves efficiency, consistency, and profitability across **Sales, Service, Parts, F&I, BDC, and Marketing**—while safeguarding data and meeting OEM/regulatory requirements.
 
