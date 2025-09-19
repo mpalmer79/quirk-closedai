@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>NH On Premise Server — Plan</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<main class="container">
+  <div class="hero">
+    <div class="logo"><div class="logo-badge">AI</div></div>
+    <div>
+      <h1 class="title">NH On Premise Server — Plan</h1>
+      <p class="sub">Deployment for New Hampshire dealerships. Keep voice + CRM context local with a hardened egress path.</p>
+      <div class="pills">
+        <a class="pill" href="../index.html">← Back to Overview</a>
+        <a class="pill" href="../install/index.html">Install Guide</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="grid">
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">DNS Approach</h3>
+      <pre class="code">
+Pilot: Cloudflare in DNS-only (gray cloud) for voice.quirkcars.com (A → public IP)
+Later: registrar DNS or self-hosted NS if preferred
+CAA: allow letsencrypt.org for TLS issuance
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Firewall & TLS</h3>
+      <pre class="code">
+Inbound: TCP 80/443 → Caddy only
+Outbound allow-list: Twilio, OpenAI, Let's Encrypt
+TLS terminates at Caddy (Let’s Encrypt)
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Replace Cloudflare?</h3>
+      <pre class="code">
+Yes, if you move to registrar/self-host DNS.
+If leaving Cloudflare entirely, consider WAF/DDoS alternatives (Nginx+ModSecurity, ISP scrubbing, etc.)
+      </pre>
+    </div></article>
+  </section>
+</main>
+</body>
+</html>
