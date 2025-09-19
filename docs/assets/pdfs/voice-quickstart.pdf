@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Voice Quickstart — Realtime</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>Voice Quickstart — Realtime</h1>
+      <p class="sub">From Twilio to on-prem Caddy to OpenAI Realtime.</p>
+    </div>
+  </div>
+
+  <h2>1) DNS & TLS</h2>
+  <ul><li>A-record: <code>voice.quirkcars.com → public IP (on-prem)</code>. Let’s Encrypt via Caddy.</li></ul>
+
+  <h2>2) Caddy</h2>
+  <ul>
+    <li>WS endpoint: <code>/realtime/twilio</code>, forward to OpenAI Realtime with API key.</li>
+    <li>Access logs enabled; redact as needed.</li>
+  </ul>
+
+  <h2>3) Twilio number</h2>
+  <ul>
+    <li>Voice → TwiML Bin (pilot) with WebSocket connect to Caddy endpoint.</li>
+  </ul>
+
+  <h2>4) Verify</h2>
+  <ul><li>Call flow and logs; confirm audio round-trip and agent responses.</li></ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
