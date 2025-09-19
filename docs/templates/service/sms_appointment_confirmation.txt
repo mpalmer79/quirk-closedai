@@ -1,1 +1,1 @@
-
+{{first_name}}, your service visit is set for {{date}} at {{time}} for your {{year}} {{make}} {{model}} ({{last8_vin}}). Need shuttle/loaner? Reply here. {{store_name}}, {{address}}. {{service_phone}} {{opt_out_text}}
