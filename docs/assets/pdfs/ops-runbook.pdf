@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ops Runbook — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/pdf.css">
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="badge">AI</div>
+    <div class="hgroup">
+      <h1>Ops Runbook — Quirk AI (Pilot)</h1>
+      <p class="sub">Start/stop, logs, TLS, deploy, and incident tips.</p>
+    </div>
+  </div>
+
+  <h2>Start / Stop</h2>
+  <div class="callout">
+    <pre>cd /opt/quirk/quirk-closedai/deploy
+docker compose up -d     # start
+docker compose ps        # status
+docker compose logs -f   # tail logs
+docker compose down      # stop</pre>
+  </div>
+
+  <h2>Checks</h2>
+  <ul>
+    <li>Caddy cert valid; 200 on <code>/.well-known</code> ACME paths.</li>
+    <li>Gateway health; Twilio WebSocket connects.</li>
+  </ul>
+
+  <h2>Common incidents</h2>
+  <ul>
+    <li>DNS mispointing → verify A-record & public IP.</li>
+    <li>TLS fail → check CAA, firewall 80/443, time skew.</li>
+    <li>Media path fail → verify TwiML Bin URL + logs.</li>
+  </ul>
+
+  <hr>
+  <div class="footer">© Quirk Auto Dealers — Quirk AI</div>
+</div>
+</body>
+</html>
