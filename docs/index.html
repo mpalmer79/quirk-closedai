@@ -1,47 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Quirk AI Initiatives</title>
+  <!-- Green theme CSS you already added -->
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-  <main class="container">
+<main class="container">
 
-    <div class="hero">
-      <div class="logo"><div class="logo-badge">AI</div></div>
-      <div>
-        <h1 class="title">Quirk AI Initiatives</h1>
-        <p class="sub">Live tools and in-flight projects that use AI to improve efficiency across Quirk Auto Dealerships.</p>
-        <div class="pills">
-          <a class="pill pill--primary" href="#">Open Project Library</a>
-          <a class="pill" href="templates/index.html">Templates</a>
-          <a class="pill" href="#">AI Voice Agents</a>
-          <a class="pill" href="#">Quirk AI Marketing</a>
-        </div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo"><div class="logo-badge">AI</div></div>
+    <div>
+      <h1 class="title">Quirk AI Initiatives</h1>
+      <p class="sub">Live tools and in-flight projects that use AI to improve efficiency across Quirk Auto Dealerships.</p>
+
+      <div class="pills">
+        <!-- Update this href if your project library lives at a different URL -->
+        <a class="pill pill-primary" href="https://mpalmer79.github.io/Quirk-AI-Project-Overview/">Open Project Library</a>
+        <a class="pill" href="templates/index.html">Templates</a>
+        <a class="pill" href="voice/index.html">AI Voice Agents</a>
+        <a class="pill" href="playbooks/index.html">Playbooks</a>
+        <a class="pill" href="governance/index.html">Governance</a>
+        <a class="pill" href="install/index.html">On Premise Install</a>
       </div>
     </div>
+  </div>
 
-    <section class="grid">
-      <!-- Keep your existing cards here (unchanged), or add new ones. -->
-      <!-- Example “Templates” card wired to the new page -->
-      <article class="card">
-        <div class="card-top"></div>
-        <div class="card-body">
-          <h3 class="card-title">Templates Catalog</h3>
-          <p class="card-desc">Copy-ready email/SMS for Sales, Service, Parts, F&amp;I, Marketing.</p>
-          <div class="badges"><span class="badge live">Live</span></div>
-          <div class="meta">
-            <div class="k">Est. Impact:</div><div class="v">Faster replies, consistent tone, fewer escalations.</div>
-            <div class="k">Notes:</div><div class="v">VinSolutions merge-field ready.</div>
-          </div>
-          <div class="cta"><a class="btn" href="templates/index.html">Open</a></div>
+  <!-- GRID ROW 1 -->
+  <section class="grid">
+
+    <!-- Templates -->
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">Templates Catalog</h3>
+        <p class="card-desc">Copy-ready email/SMS for Sales, Service, Parts, F&amp;I, Marketing. VinSolutions merge-field ready.</p>
+        <div class="badges"><span class="badge live">Live</span></div>
+        <div class="meta">
+          <div class="k">Est. Impact:</div><div class="v">Faster replies, consistent tone, fewer escalations.</div>
+          <div class="k">Notes:</div><div class="v">Persona-based bundles; copy with one click.</div>
         </div>
-      </article>
-      <!-- …other cards… -->
-    </section>
+        <div class="cta"><a class="btn" href="templates/index.html">Open</a></div>
+      </div>
+    </article>
 
-  </main>
+    <!-- Playbooks -->
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">Playbooks</h3>
+        <p class="card-desc">Department SOPs &amp; checklists (BDC, Sales, Service, Parts, F&amp;I, Accounting, Executive).</p>
+        <div class="badges"><span class="badge live">Live</span></div>
+        <div class="meta">
+          <div class="k">Focus:</div><div class="v">Consistency across 13 OEMs / 20 stores.</div>
+        </div>
+        <div class="cta"><a class="btn" href="playbooks/index.html">Browse</a></div>
+      </div>
+    </article>
+
+    <!-- Voice -->
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">Voice (Realtime)</h3>
+        <p class="card-desc">Twilio → Quirk reverse proxy (Caddy) → OpenAI Realtime. On-premise isolation; no raw audio stored.</p>
+        <div class="badges"><span class="badge near">Near Launch</span></div>
+        <div class="meta">
+          <div class="k">Notes:</div><div class="v">Egress allow-list; TLS at Caddy; PII redaction in logs.</div>
+        </div>
+        <div class="cta"><a class="btn" href="voice/index.html">Open Voice Docs</a></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- GRID ROW 2 -->
+  <section class="grid">
+    <!-- Governance -->
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">Governance &amp; Security</h3>
+        <p class="card-desc">Prompt controls, data handling, audit checkpoints, and PR-based change management.</p>
+        <div class="badges"><span class="badge live">Live</span></div>
+        <div class="cta"><a class="btn" href="governance/index.html">View Governance</a></div>
+      </div>
+    </article>
+
+    <!-- Install -->
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">On Premise Install (Ubuntu)</h3>
+        <p class="card-desc">Hardened host, Caddy reverse proxy, firewall rules, and a simple WebSocket gateway.</p>
+        <div class="badges"><span class="badge live">Live</span></div>
+        <div class="cta"><a class="btn" href="install/index.html">Open Install Guide</a></div>
+      </div>
+    </article>
+
+    <!-- NH Plan -->
+    <article class="card">
+      <div class="card-top"></div>
+      <div class="card-body">
+        <h3 class="card-title">NH On Premise Server — Plan</h3>
+        <p class="card-desc">Deployment plan for New Hampshire dealerships. DNS strategy, firewall, TLS, and ops notes.</p>
+        <div class="badges"><span class="badge plan">Planning</span></div>
+        <div class="cta"><a class="btn" href="infra/nh-plan.html">Read Plan</a></div>
+      </div>
+    </article>
+  </section>
+
+</main>
 </body>
 </html>
