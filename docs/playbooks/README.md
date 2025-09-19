@@ -50,5 +50,93 @@
 * **Quarterly:** Governance audit ensures playbooks align with compliance.
 
 ---
+## Visual Map
+
+flowchart TD
+Master[Dealer Group Master Playbook]
+
+
+subgraph VariableOps[Variable Ops]
+Sales[Sales Playbook]
+FNI[Finance & Insurance Playbook]
+BDC[BDC Playbook]
+Mkt[Marketing Playbook]
+end
+
+
+subgraph FixedOps[Fixed Ops]
+Service[Service Playbook]
+Parts[Parts Playbook]
+FO[Fixed Ops (Service + Parts + Collision)]
+end
+
+
+subgraph BackOffice[Back Office]
+Acct[Accounting Playbook]
+end
+
+
+subgraph Leadership[Leadership]
+Exec[Executive / GM Playbook]
+end
+
+
+Master --> VariableOps
+Master --> FixedOps
+Master --> BackOffice
+Master --> Leadership
+
+## Visual Map (Mermaid)
+
+flowchart TD
+A[Dealer Group Master Playbook]
+(master_playbook.md)
+subgraph Variable Ops
+S[Sales
+(sales_playbook.md)]
+F[F&I
+(finance_playbook.md)]
+B[BDC
+(bdc_playbook.md)]
+M[Marketing
+(marketing_playbook.md)]
+end
+subgraph Fixed Ops
+SV[Service
+(service_playbook.md)]
+P[Parts
+(parts_playbook.md)]
+FX[Fixed Ops (Svc+Parts+Collision)
+(fixed_ops_playbook.md)]
+end
+subgraph Back Office
+AC[Accounting
+(accounting_playbook.md)]
+end
+subgraph Leadership
+EX[Executive / GM
+(executive_playbook.md)]
+end
+
+
+%% Master links to all
+A --> S
+A --> F
+A --> B
+A --> M
+A --> SV
+A --> P
+A --> FX
+A --> AC
+A --> EX
+
+
+%% Cross-links (examples)
+SV -.-> P
+F -.-> AC
+B -.-> S
+B -.-> SV
+M -.-> S
+
 
 *End of Dealer Group Playbooks Index*
