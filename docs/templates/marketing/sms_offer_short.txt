@@ -1,1 +1,1 @@
-
+{{store_name}}: {{offer_name}} ends {{offer_expiration}}. Book now: {{short_url}}. {{opt_out_text}}
