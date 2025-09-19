@@ -3,6 +3,9 @@ title: Quirk AI — Corporate Overview
 nav_order: 1
 ---
 
+<!-- Layout override for this page -->
+<link rel="stylesheet" href="{{ '/assets/css/layout-overrides.css' | relative_url }}">
+
 # Quirk AI (Corporate)
 
 Quirk AI is our **on-prem corporate assistant** that improves speed, consistency, and compliance across the dealer group while **keeping customer data private**.
@@ -18,12 +21,11 @@ Quirk AI is our **on-prem corporate assistant** that improves speed, consistency
 - **Privacy**: on-prem isolation; PII redaction in logs
 
 ## Quick links
-
-- [Executive Brief](overview/exec.md){: .btn .btn-primary }
-- [Architecture](overview/architecture.md){: .btn }
-- [Security Posture](overview/security.md){: .btn }
-- [Templates](../templates/){: .btn }
-- [Playbooks](../playbooks/){: .btn }
+[Executive Brief](overview/exec.md){: .btn .btn-primary }
+[Architecture](overview/architecture.md){: .btn }
+[Security Posture](overview/security.md){: .btn }
+[Templates](templates/){: .btn }
+[Playbooks](playbooks/){: .btn }
 
 ## Where we are today
 
@@ -38,4 +40,3 @@ Quirk AI is our **on-prem corporate assistant** that improves speed, consistency
 - Pilot go-live (1–2 stores), measure handle-time & quality  
 - Expand templates (BDC, Service, F&I)  
 - Add audit/reporting & change governance
-
