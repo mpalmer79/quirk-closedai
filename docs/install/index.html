@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>On Premise Install (Ubuntu) — Quirk AI</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<main class="container">
+  <div class="hero">
+    <div class="logo"><div class="logo-badge">AI</div></div>
+    <div>
+      <h1 class="title">On Premise Install — Ubuntu 22.04 LTS</h1>
+      <p class="sub">Hardened host, reverse proxy with Caddy, and a simple WebSocket gateway.</p>
+      <div class="pills">
+        <a class="pill" href="../index.html">← Back to Overview</a>
+        <a class="pill" href="../voice/index.html">Voice</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="grid">
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Hardware & OS</h3>
+      <pre class="code">
+4–8 vCPU, 16–32 GB RAM, 250 GB SSD/NVMe
+Ubuntu Server 22.04 LTS; static LAN IP; server VLAN
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Network Rules</h3>
+      <pre class="code">
+Inbound: TCP 80/443 → proxy (Caddy) only
+Outbound allow-list: *.twilio.com, api.openai.com, acme-v02.api.letsencrypt.org
+No SMB/RDP exposure; SSH via IT bastion only
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Docker & Caddy</h3>
+      <pre class="code">
+# Docker
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+
+# Caddy (apt)
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo tee /usr/share/keyrings/caddy-stable-archive-keyring.gpg >/dev/null
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update && sudo apt install caddy
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Caddyfile</h3>
+      <pre class="code">
+voice.quirkcars.com {
+  encode zstd gzip
+  @ws {
+    header Connection *Upgrade*
+    header Upgrade websocket
+    path /realtime/*
+  }
+  reverse_proxy @ws ws://localhost:8080
+  reverse_proxy / https://static.healthcheck.local
+}
+      </pre>
+    </div></article>
+
+    <article class="card"><div class="card-top"></div><div class="card-body">
+      <h3 class="card-title">Gateway — service</h3>
+      <pre class="code">
+# Example: systemd service (your gateway listens on :8080)
+[Unit]
+Description=Quirk Voice Gateway
+After=network.target
+
+[Service]
+User=quirk
+WorkingDirectory=/opt/quirk/gateway
+ExecStart=/usr/bin/node server.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+      </pre>
+    </div></article>
+  </section>
+</main>
+</body>
+</html>
