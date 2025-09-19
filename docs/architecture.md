@@ -101,3 +101,42 @@ Adapters Knowledge Base
 - Extend adapters with mock endpoints for dev/test.  
 - Link architecture doc to `README.md`.  
 
+## *** Mermaid Diagram ***
+
+flowchart TD
+    A[Dealership Staff / Customer Inputs<br/>(BDC, Sales, Service, Parts, F&I, Accounting)]
+    --> B[FastAPI Gateway<br/>src/server.py]
+
+    B --> C[Prompt Loader<br/>compose(meta + system + dept)]
+    C --> D[Local AI Model Server<br/>(OpenAI-compatible, on-prem)]
+
+    %% Fan-out from model to integrations / data
+    D --> E1[Adapters<br/>src/adapters/]
+    D --> E2[Knowledge Base / RAG (future)]
+    D --> E3[Logging & Telemetry<br/>(metadata only)]
+
+    %% Adapters detail
+    subgraph Adapters
+      E1a[VinSolutions CRM<br/>vinsolutions.py]
+      E1b[DMS (RO/Parts/Acct)<br/>dms.py]
+      E1c[OEM Feeds (Incentives/Recalls)<br/>oem_feeds.py]
+      E1d[Other CRMs (eLeads, etc.)<br/>(future)]
+    end
+    E1 --> E1a
+    E1 --> E1b
+    E1 --> E1c
+    E1 --> E1d
+
+    %% Security & Governance
+    subgraph Security & Governance
+      G1[On-prem only<br/>No external calls without whitelist]
+      G2[TLS + RBAC]
+      G3[Secrets in .env / vault<br/>(.gitignore enforced)]
+      G4[Governance & Reviews<br/>docs/governance.md]
+    end
+
+    %% Relations
+    B --- G2
+    C --- G4
+    D --- G1
+    E3 --- G3
