@@ -1,0 +1,16 @@
+title: Quirk Closed AI
+description: Dealer group AI playbooks & templates
+url: https://mpalmer79.github.io
+baseurl: /quirk-closedai
+
+# Use the Just the Docs theme (fully supported on GitHub Pages)
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+# Nav & search
+aux_links:
+  "View on GitHub":
+    - "https://github.com/mpalmer79/quirk-closedai"
+search_enabled: true
+logo: # optional path if you add a logo in docs/assets/
