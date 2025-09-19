@@ -1,0 +1,25 @@
+/* Simple cards + grid for Just the Docs */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+}
+.card h3 { margin: 0 0 .25rem 0; font-size: 1.06rem; }
+.card p  { margin: 0 0 .5rem 0; color: #4b5563; }
+.card .meta { font-size: .85rem; color: #6b7280; }
+.card .btn { margin-top: .5rem; }
+
+ /* copy button on code blocks */
+div.highlighter-rouge, pre.highlight { position: relative; }
+.copy-btn {
+  position: absolute; top: .5rem; right: .5rem;
+  font-size: .8rem; padding: .15rem .5rem;
+}
