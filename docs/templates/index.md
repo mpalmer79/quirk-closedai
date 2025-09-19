@@ -1,10 +1,11 @@
 ---
 title: Templates Catalog
 nav_order: 10
+render_with_liquid: false
 ---
 
-<link rel="stylesheet" href="../assets/css/cards.css">
-<script src="../assets/js/copy.js"></script>
+<link rel="stylesheet" href="{{ '/assets/css/cards.css' | relative_url }}">
+<script src="{{ '/assets/js/copy.js' | relative_url }}"></script>
 
 # Templates Catalog
 
@@ -16,7 +17,7 @@ Copy-ready email/SMS for every department. Use the **Copy** button on any block,
   <h3>Sales — Internet Lead (Email)</h3>
   <p>Fast, compliant first touch that confirms availability and proposes an appointment time.</p>
   <div class="meta">Persona: Internet Sales / BDC</div>
-  
+
 ```md
 Subject: {{FirstName}}, info on the {{Year}} {{Make}} {{Model}}
 
@@ -35,27 +36,15 @@ Best regards,
 {{EmployeeName}} • {{StoreName}}
 {{DirectPhone}} | {{Email}}
 
-<a class="btn" href="sales/index.html">Open Sales bundle →</a>
-
-</div> <div class="card"> <h3>Sales — Internet Lead (Short SMS)</h3> <p>Short opt-out compliant text to move the convo to a time slot.</p>
-
 Hi {{FirstName}}, it’s {{SalespersonName}} at {{StoreName}}.
 The {{Year}} {{Make}} {{Model}} you asked about is available.
 Want to swing by {{AppointmentDayTime}} or pick another time?
 Reply STOP to opt out.
 
-<a class="btn" href="sales/index.html">Open Sales bundle →</a>
-
-</div> <div class="card"> <h3>Service — Status & ETA (SMS)</h3> <p>Keep waiters informed; reduce inbound “is it done yet?” calls.</p>
-
 Hi {{FirstName}}, quick update from {{StoreName}} Service —
 Your {{Year}} {{Make}} {{Model}} is {{Status}}.
 Estimated completion: {{ETA}}.
 Reply YES to approve, or call {{ServiceNumber}} with questions.
-
-<a class="btn" href="../playbooks/service_playbook.html">See Service SOPs →</a>
-
-</div> <div class="card"> <h3>F&I — Post-Sale Welcome (Email)</h3> <p>Warm welcome + how to reach us for questions about coverage or payments.</p>
 
 Subject: Welcome to {{StoreName}} — Your purchase details
 
@@ -66,13 +55,9 @@ warranty coverage or payments, contact {{FIManager}} at {{FIPhone}}.
 We’re here for you,
 {{StoreName}} Finance & Insurance
 
-</div> <div class="card"> <h3>Parts — Special Order Ready (SMS)</h3> <p>Automates the pick-up nudge with clear next steps.</p>
-
 Hi {{FirstName}}, your part {{PartNumber}} is ready for pickup at {{StoreName}}.
 Please bring ID. Hours: {{PartsHours}}. Need shipping? Reply SHIP.
-</div> <div class="card"> <h3>Marketing — Review Request (Email)</h3> <p>Polite, opt-in ask for a review with store-safe language.</p>
-md
-Copy code
+
 Subject: Quick favor from {{StoreName}}
 
 Thanks again for your visit, {{FirstName}}. If we earned it,
@@ -80,23 +65,16 @@ would you consider leaving a quick review? It helps neighbors find us:
 {{ReviewLink}}
 
 If anything wasn’t 5-star, reply here and we’ll make it right.
-</div> </div>
-Need department-specific bundles? Start with Sales
-→ Open Sales bundle
 
-php-template
-Copy code
 
----
-
-### 4) `docs/playbooks/index.md`
+### `docs/playbooks/index.md`
 ```markdown
 ---
 title: Playbooks Catalog
 nav_order: 20
 ---
 
-<link rel="stylesheet" href="../assets/css/cards.css">
+<link rel="stylesheet" href="{{ '/assets/css/cards.css' | relative_url }}">
 
 # Playbooks Catalog
 
@@ -147,4 +125,3 @@ Standard operating procedures (SOPs) by department. These align with the Quirk A
 </div>
 
 </div>
-
