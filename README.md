@@ -51,3 +51,24 @@ P1 (0–4 wks): Internal copilots + prompt repo; read‑only adapters.
 P2 (5–12 wks): Department playbooks, basic automations; limited write‑backs with approvals.
 
 P3 (13+ wks): Expanded automations, reporting, A/B tests, broader integrations.
+
+dealer-ai/
+├─ config/
+│ ├─ system_prompt.md
+│ ├─ meta_prompt.md
+│ └─ prompts/
+│ ├─ sales.md
+│ ├─ service.md
+│ ├─ marketing.md
+│ └─ finance.md
+├─ src/
+│ ├─ server.py
+│ ├─ adapters/
+│ │ ├─ __init__.py
+│ │ └─ vinsolutions.py # stub for read-only operations
+│ └─ utils/
+│ └─ prompt_loader.py
+├─ tests/
+│ └─ test_prompts.py
+├─ .env.example
+└─ README.md
