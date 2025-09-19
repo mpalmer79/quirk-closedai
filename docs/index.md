@@ -3,8 +3,34 @@ title: Quirk AI — Corporate Overview
 nav_order: 1
 ---
 
-<!-- Layout override for this page -->
-<link rel="stylesheet" href="{{ '/assets/css/layout-overrides.css' | relative_url }}">
+<!-- Inline overrides so they always load on this page -->
+<style>
+  /* Adjust how wide you want the light-blue sidebar */
+  :root { --quirk-sidebar-width: 360px; } /* tweak 320–400px to taste */
+
+  /* Desktop+ : widen sidebar and shift main area */
+  @media (min-width: 992px) {
+    .side-bar {
+      width: var(--quirk-sidebar-width) !important;
+    }
+    .main {
+      margin-left: var(--quirk-sidebar-width) !important;
+    }
+  }
+
+  /* Center the main content column and the header/search row */
+  .main .main-content,
+  .main .main-header {
+    max-width: 960px;         /* readable column; adjust if desired */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Optional: tighten the top spacing under the header */
+  .main .main-content > h1:first-child { margin-top: .5rem; }
+</style>
 
 # Quirk AI (Corporate)
 
