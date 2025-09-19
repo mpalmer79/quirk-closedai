@@ -1,0 +1,40 @@
+/* ===== Quirk Closed AI — layout overrides for Just the Docs =====
+   Goal:
+   - widen the left sidebar (light blue)
+   - shift the main area to match
+   - keep a centered, readable content column
+   Tweak the --quirk-sidebar-width value to taste.
+*/
+
+/* Desktop+ only: adjust the sidebar width and main offset */
+@media (min-width: 992px) {
+  :root {
+    --quirk-sidebar-width: 340px; /* <— change this if you want wider/narrower */
+  }
+
+  /* Sidebar panel */
+  .side-bar {
+    width: var(--quirk-sidebar-width) !important;
+  }
+
+  /* Main wrapper needs to clear the new sidebar width */
+  .main {
+    margin-left: var(--quirk-sidebar-width) !important;
+  }
+}
+
+/* Center and constrain the readable column */
+.main .main-content {
+  max-width: 920px;           /* readable line-length; adjust if desired */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;         /* keep some breathing room at very wide screens */
+  padding-right: 1rem;
+}
+
+/* Optional: make the page title feel centered on very wide screens
+   (keeps text left-aligned inside the centered column for readability) */
+.main .main-content > h1:first-child {
+  /* remove if you prefer the default spacing */
+  margin-top: 0.5rem;
+}
