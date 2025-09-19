@@ -1,1 +1,40 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{campaign_title}}</title>
+<style>
+/* Minimal inlined-safe styles for many email clients */
+.btn{display:inline-block;padding:12px 18px;text-decoration:none;border-radius:6px;background:#0a66c2;color:#ffffff}
+details summary{cursor:pointer}
+summary .open{display:inline}
+summary .close{display:none}
+details[open] summary .open{display:none}
+details[open] summary .close{display:inline}
+</style>
+</head>
+<body style="margin:0;padding:0;background:#f6f6f6">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f6f6"><tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;margin:20px 0;padding:24px;border-radius:8px">
+<tr><td style="font-family:Arial,Helvetica,sans-serif">
+<h1 style="margin:0 0 8px">{{headline}}</h1>
+<p style="margin:0 0 16px">{{subhead}}</p>
+<p style="margin:0 0 24px">{{body_copy}}</p>
+<p><a class="btn" href="{{cta_url}}">{{cta_label}}</a></p>
+<hr style="margin:24px 0;border:none;border-top:1px solid #e5e5e5" />
+<details>
+<summary>
+<span class="open">Open for more</span>
+<span class="close">Close</span>
+</summary>
+<div>
+<p style="font-size:12px;color:#666">{{long_disclosure}}</p>
+</div>
+</details>
+<p style="font-size:12px;color:#666;margin-top:16px">{{email_footer}}</p>
+</td></tr>
+</table>
+</td></tr></table>
+</body>
+</html>
