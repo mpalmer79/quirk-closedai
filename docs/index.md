@@ -3,49 +3,35 @@ title: Quirk AI — Overview
 nav_order: 1
 ---
 
-<!-- Page-only layout overrides (works without any global include) -->
+<!-- Home-page only: center the content text while keeping paragraphs/lists readable -->
 <style>
-  /* Sidebar width you want (tweak 320–420px to taste) */
-  :root { --quirk-sidebar-width: 360px; }
-
-  /* On desktop, override the theme's grid to widen the sidebar
-     and position the main area as the second column. */
-  @media (min-width: 992px) {
-    /* The two-column grid container used by Just the Docs */
-    .page {
-      display: grid !important;
-      grid-template-columns: var(--quirk-sidebar-width) minmax(0, 1fr) !important;
-      column-gap: 0 !important;
-    }
-
-    /* Sidebar column */
-    .side-bar {
-      width: var(--quirk-sidebar-width) !important;
-      max-width: var(--quirk-sidebar-width) !important;
-      flex: 0 0 var(--quirk-sidebar-width) !important;
-    }
-
-    /* Main column is placed by the grid; remove any left margin hacks */
-    .main { margin-left: 0 !important; }
-  }
-
-  /* Center the header/search row and the readable content column */
-  .main .main-header,
-  .main .main-content {
-    max-width: 960px;      /* readable line length */
+  .home-center { text-align: center; }
+  /* Keep blocks readable (left text) but center them as units */
+  .home-center > * {
+    max-width: 960px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
-
-  /* Optional: slightly tighter space under the header on this page */
-  .main .main-content > h1:first-child { margin-top: .5rem; }
+  .home-center p,
+  .home-center .note,
+  .home-center ul,
+  .home-center ol,
+  .home-center pre,
+  .home-center code,
+  .home-center .highlighter-rouge {
+    display: inline-block;
+    text-align: left;
+    width: auto;            /* shrink to content; still capped by max-width above */
+  }
+  /* Button row centers nicely */
+  .home-center .btn { display: inline-block; }
 </style>
+
+<div class="home-center">
 
 # Quirk AI
 
-Quirk AI is our **on-prem corporate assistant** that improves speed, consistency, and compliance across the dealer group while **keeping customer data private**.
+Quirk AI is our **on-premise corporate assistant** that improves speed, consistency, and compliance across the dealer group while **keeping customer data private**.
 
 {: .note }
 **Phase-1 focus**: Internal copilots for BDC, Sales, Service Writers, Parts, and Marketing. Read-only adapters to CRM/DMS (e.g., VIN Solutions). Voice pilots via Twilio → OpenAI Realtime.
@@ -77,3 +63,5 @@ Quirk AI is our **on-prem corporate assistant** that improves speed, consistency
 - Pilot go-live (1–2 stores), measure handle-time & quality  
 - Expand templates (BDC, Service, F&I)  
 - Add audit/reporting & change governance
+
+</div>
