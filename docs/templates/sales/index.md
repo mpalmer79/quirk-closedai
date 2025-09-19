@@ -12,7 +12,7 @@ Below are copy-ready templates. Use the **Copy** button on each code block.
 
 ## Internet Lead – First Response (Email)
 
-```md
+~~~md
 Subject: {{FirstName}}, quick info on the {{Year}} {{Make}} {{Model}}
 
 Hi {{FirstName}},
@@ -36,3 +36,10 @@ Best regards,
 
 All payments subject to credit approval. Price, terms, and availability subject to change without notice. See dealer for details.
 You received this because you contacted {{StoreName}}. To update preferences, reply to this email or call {{SalesPhone}}.
+~~~
+
+## Internet Lead – Short SMS
+
+~~~text
+Hi {{FirstName}}, it’s {{SalespersonName}} at {{StoreName}}. The {{Year}} {{Make}} {{Model}} you asked about is available. Want to swing by {{AppointmentDayTime}} or pick another time? Reply STOP to opt out.
+~~~
