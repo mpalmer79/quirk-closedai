@@ -1,5 +1,5 @@
 ---
-title: Quirk AI — Corporate Overview
+title: Quirk AI — Overview
 nav_order: 1
 ---
 
