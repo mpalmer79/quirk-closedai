@@ -1,31 +1,57 @@
-import asyncio, json, os
-from fastapi import FastAPI, WebSocket
+import os, json, asyncio, base64
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import PlainTextResponse
-from policy import redact
-from transforms import stt_to_text, text_to_tts
+from dotenv import load_dotenv
 
+load_dotenv()
 app = FastAPI()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# env vars (populate in .env at deploy time, don't commit real values)
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "set-me")
+REALTIME_MODEL = os.getenv("REALTIME_MODEL", "realtime-model-name")
+SYSTEM_PROMPT_PATH = os.getenv("SYSTEM_PROMPT_PATH", "config/prompts/voice_system.md")
+
+def load_system_prompt():
+    try:
+        with open(SYSTEM_PROMPT_PATH, "r", encoding="utf-8") as f:
+            return f.read()
+    except FileNotFoundError:
+        return "You are Quirk AI Voice."
 
 @app.get("/health")
 def health():
     return PlainTextResponse("ok")
 
-@app.websocket("/realtime")
-async def realtime(ws: WebSocket):
+@app.websocket("/realtime/twilio")
+async def twilio_stream(ws: WebSocket):
+    """
+    This endpoint is designed for a Twilio <Connect><Stream> bidirectional media stream.
+    For the pilot: we just accept the stream and log message types so you can verify end-to-end routing.
+    Later, bridge to OpenAI Realtime (WebRTC/WS) and stream TTS back.
+    """
     await ws.accept()
-    # In production: bridge PBX/Twilio media here, send to OpenAI Realtime over WebRTC/WS.
-    # Pseudocode event loop:
-    while True:
-        msg = await ws.receive_text()
-        data = json.loads(msg)
-        if data.get("type") == "audio.chunk":
-            # 1) STT (or forward chunk to Realtime session)
-            text = await stt_to_text(data["payload"])
-            safe = redact(text)
-            # 2) Send to OpenAI Realtime (omitted: session mgmt)
-            # 3) Receive model response text -> TTS -> stream back
-            audio = await text_to_tts("Thanks for calling Quirk! " + safe)
-            await ws.send_bytes(audio)
+    system_prompt = load_system_prompt()
+    print("[WS] connected; prompt bytes:", len(system_prompt))
 
+    try:
+        while True:
+            msg = await ws.receive_text()
+            data = json.loads(msg)
+            event_type = data.get("event", data.get("type"))
+            if event_type in ("start", "connected"):
+                print(f"[WS] {event_type}: {data}")
+            elif event_type == "media":
+                # Twilio sends 20ms PCM frames base64-encoded in data['media']['payload']
+                # payload = base64.b64decode(data["media"]["payload"])
+                pass
+            elif event_type in ("stop", "close"):
+                print(f"[WS] stop: {data}")
+                break
+            else:
+                print(f"[WS] other: {data.keys()}")
+    except WebSocketDisconnect:
+        print("[WS] disconnected")
+    except Exception as e:
+        print("[WS] error:", e)
+    finally:
+        await ws.close()
