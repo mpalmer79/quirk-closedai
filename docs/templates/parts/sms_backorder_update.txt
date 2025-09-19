@@ -1,1 +1,1 @@
-
+Hi {{first_name}}, parts update for your {{year}} {{make}} {{model}} (RO {{ro_number}}): {{part_name}} is on backorder, ETA {{eta_date}}. Reply 1 keep appt, 2 reschedule, or 3 cancel. {{opt_out_text}}
