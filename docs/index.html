@@ -3,17 +3,37 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Quirk AI Initiatives</title>
+  <title>Quirk AI — Closed AI</title>
   <link rel="stylesheet" href="assets/css/site.css">
+
+  <!-- Universal HOME pill styles (matching rest of site) -->
+  <style>
+    .home-wrap{display:flex;justify-content:center;padding:18px 0 4px;position:relative;z-index:10}
+    .home-btn{
+      display:inline-block;background:#111;color:#fff;text-decoration:none;text-transform:uppercase;
+      font-weight:800;letter-spacing:.02em;border-radius:999px;padding:10px 20px;line-height:1;
+      border:1px solid rgba(255,255,255,.06);box-shadow:0 10px 24px rgba(0,0,0,.18);
+      transition:transform .15s,box-shadow .15s,background .15s
+    }
+    .home-btn:hover{background:#0a0a0a;box-shadow:0 12px 28px rgba(0,0,0,.24);transform:translateY(-1px)}
+    /* small spacing tweak since we removed the H1 */
+    .hero .sub{margin-top:2px}
+  </style>
 </head>
 <body>
+
+<!-- Universal HOME button -->
+<div class="home-wrap">
+  <a class="home-btn" href="https://mpalmer79.github.io/Quirk-AI-Project-Overview/">HOME</a>
+</div>
+
 <main class="container">
 
   <!-- HERO -->
   <div class="hero">
     <div class="logo"><div class="logo-badge">AI</div></div>
     <div>
-      <h1 class="title">Quirk AI Initiatives</h1>
+      <!-- Removed the old H1 "Quirk AI Initiatives" per request -->
       <p class="sub">Live tools and in-flight projects that use AI to improve efficiency across Quirk Auto Dealerships.</p>
 
       <div class="pills">
